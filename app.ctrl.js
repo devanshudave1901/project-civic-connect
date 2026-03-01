@@ -20,12 +20,18 @@ app.get('/',function (req,res){
     res.render('landing_page');
 
 });
+
+app.get('/login',function (req,res) {
+    res.render('login');
+});
+
 app.get("/background_landingPage.jpg", function (req,res){
-    console.log("Background image requested");
     res.sendFile(__dirname + "/views/background_landingPage.jpg")
 });
+app.get('/script.js',function (req,res){
+    res.sendFile(__dirname + '/script.js');
+});
 app.get('/output.css',function (req,res){
-    console.log("Background image requested1");
 
    res.sendFile(__dirname + '/views/output.css');
 });
