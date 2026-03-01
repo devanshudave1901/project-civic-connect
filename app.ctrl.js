@@ -22,9 +22,27 @@ app.get('/',function (req,res){
 });
 
 app.get('/login',function (req,res) {
-    res.render('login');
+
+    var data = {
+        title: "Login Page",
+        cardHeading : "Login",
+        login: true,
+        register: false
+    }
+
+    res.render('account',data);
 });
 
+app.get('/register',function (req,res) {
+    var data = {
+        title: "Register Page",
+        cardHeading : "Register",
+        login: false,
+        register: true
+
+    }
+    res.render('account',data);
+});
 app.get("/background_landingPage.jpg", function (req,res){
     res.sendFile(__dirname + "/views/background_landingPage.jpg")
 });
