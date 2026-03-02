@@ -21,8 +21,31 @@ app.get('/',function (req,res){
     res.render('landing_page');
 
 });
-app.get('/home',function (req,res) {
-   res.render('home');
+app.get('/home',async function (req, res) {
+
+    let tableData = await Model.getAllIssues();
+    let data = {
+        title1: "Home Page",
+        tableData: []
+
+    }
+    tableData.forEach(function (r) {
+        console.log(r);
+        data.tableData.push(r);
+    })
+    console.log(data);
+    res.render('home', data);
+
+    // (tableData => {
+    //     console.log([r]);
+    //     let data = {
+    //         title: "Home Page",
+    //         tableData: r
+    //     }
+    //     res.render('home', {data});
+    // });
+
+
 });
 app.get('/login',function (req,res) {
 

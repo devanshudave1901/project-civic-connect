@@ -24,6 +24,13 @@ async function getLogin(login)
 
     return results
 }
+
+async function getAllIssues(){
+    const results = await dataBase.all("Select * from IssueLog")
+    return results
+}
+
+
 async function registerTheUser(register)
 {
     console.log(register);
@@ -68,4 +75,4 @@ async function checkEmailForRegister(register)
     return results
 }
 
-module.exports = {dataBaseConnection, getLogin,checkEmailForRegister,registerTheUser,insertIssue}
+module.exports = {dataBaseConnection, getLogin,checkEmailForRegister,registerTheUser,insertIssue,getAllIssues}
