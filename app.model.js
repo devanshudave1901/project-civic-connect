@@ -26,7 +26,7 @@ async function getLogin(login)
 }
 
 async function getAllIssues(){
-    const results = await dataBase.all("Select IssueLog.id, IssueLog.IssueCategoryId, IssueLog.issueTitle,IssueLog.issueDescription ,IssueLog.issueCreatedDate,IssueLog.issueUpdatedDate,IssueLog.isDeleted, IssueCategory.categoryName, IssueStatus.statusName from IssueLog INNER JOIN IssueCategory ON IssueLog.issueCategoryId = IssueCategory.id INNER JOIN IssueStatus ON IssueLog.issueStatusId = IssueStatus.id")
+    const results = await dataBase.all("Select IssueLog.id, IssueLog.IssueCategoryId, IssueLog.issueTitle,IssueLog.issueDescription ,IssueLog.issueCreatedDate,IssueLog.issueUpdatedDate,IssueLog.isDeleted, IssueCategory.categoryName, IssueStatus.statusName from IssueLog INNER JOIN IssueCategory ON IssueLog.issueCategoryId = IssueCategory.id INNER JOIN IssueStatus ON IssueLog.issueStatusId = IssueStatus.id where IssueLog.isDeleted = 0")
     return results
 }
 
