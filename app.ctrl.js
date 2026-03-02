@@ -21,8 +21,11 @@ app.get('/',function (req,res){
     res.render('landing_page');
 
 });
-app.get('/view/:id',function (req,res) {
-
+app.get('/view/:id',async function (req, res) {
+    let issueId = req.params.id;
+    let data = await Model.getIssueById(issueId);
+    console.log(data);
+    res.render('viewFile', data);
 })
 app.get('/home',async function (req, res) {
 

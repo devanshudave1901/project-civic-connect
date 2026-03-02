@@ -30,6 +30,11 @@ async function getAllIssues(){
     return results
 }
 
+async function getIssueById(id){
+    const result = await dataBase.get("Select IssueLog.id, IssueLog.IssueCategoryId, IssueLog.issueTitle,IssueLog.issueDescription ,IssueLog.issueCreatedDate,IssueLog.issueUpdatedDate,IssueLog.isDeleted, IssueCategory.categoryName, IssueStatus.statusName from IssueLog INNER JOIN IssueCategory ON IssueLog.issueCategoryId = IssueCategory.id INNER JOIN IssueStatus ON IssueLog.issueStatusId = IssueStatus.id where IssueLog.id = ?", [id])
+    return result;
+
+}
 
 async function registerTheUser(register)
 {
@@ -75,4 +80,4 @@ async function checkEmailForRegister(register)
     return results
 }
 
-module.exports = {dataBaseConnection, getLogin,checkEmailForRegister,registerTheUser,insertIssue,getAllIssues}
+module.exports = {dataBaseConnection, getLogin,checkEmailForRegister,registerTheUser,insertIssue,getAllIssues,getIssueById}
