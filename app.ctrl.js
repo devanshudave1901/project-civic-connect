@@ -21,6 +21,9 @@ app.get('/',function (req,res){
     res.render('landing_page');
 
 });
+app.get('/view/:id',function (req,res) {
+
+})
 app.get('/home',async function (req, res) {
 
     let tableData = await Model.getAllIssues();
