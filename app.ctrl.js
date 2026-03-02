@@ -27,6 +27,10 @@ app.get('/view/:id',async function (req, res) {
     console.log(data);
     res.render('viewFile', data);
 })
+app.get('/delete/:id',function (req,res) {
+    let issueId = req.params.id;
+    Model.deleteIssue(issueId).then(r => res.redirect('/home'));
+})
 app.get('/home',async function (req, res) {
 
     let tableData = await Model.getAllIssues();

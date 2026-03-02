@@ -35,6 +35,10 @@ async function getIssueById(id){
     return result;
 
 }
+async  function deleteIssue(id){
+    await dataBase.run("Update IssueLog Set isDeleted = 1 where id = ?", [id])
+    console.log("Issue deleted successfully");
+}
 
 async function registerTheUser(register)
 {
@@ -80,4 +84,4 @@ async function checkEmailForRegister(register)
     return results
 }
 
-module.exports = {dataBaseConnection, getLogin,checkEmailForRegister,registerTheUser,insertIssue,getAllIssues,getIssueById}
+module.exports = {dataBaseConnection, getLogin,checkEmailForRegister,registerTheUser,insertIssue,getAllIssues,getIssueById,deleteIssue}
