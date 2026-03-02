@@ -1,5 +1,9 @@
 let button = document.getElementById('getStarted');
-console.log(button);
+let addIssueButton = document.getElementById('addIssueButton');
+
 button.addEventListener('click', function() {
     window.location.href = '/login';
+});
+addIssueButton.addEventListener('click', function() {
+    window.location.href = '/addIssue';
 });

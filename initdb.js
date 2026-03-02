@@ -56,21 +56,34 @@ async function initdb() {
             statusName TEXT NOT NULL
         )
     `)
+    const issueStatusStatement = await db.prepare("Insert into IssueStatus (statusName) values (?)")
+    await issueStatusStatement.run("Open")
+    await issueStatusStatement.run("In Progress")
+    await issueStatusStatement.run("Closed")
+
+
+    const issueCategoryStatement = await db.prepare("Insert into IssueCategory (categoryName) values (?)")
+    await issueCategoryStatement.run("Transit")
+    await issueCategoryStatement.run("Road")
+    await issueCategoryStatement.run("Waste")
+    await issueCategoryStatement.run("Water")
+    await issueCategoryStatement.run("Electricity")
+    await issueCategoryStatement.run("Parking")
 
     await  db.exec(`   
         CREATE TABLE IF NOT EXISTS IssueLog (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             issueCategoryId INTEGER NOT NULL,
             issueStatusId INTEGER NOT NULL,
-            
+            issueUserId INTEGER NOT NULL,
             issueTitle TEXT NOT NULL,
-            issueCategory TEXT NOT NULL,
-            issuePhoto TEXT NULL,
+            issueDescription TEXT NOT NULL, 
+            issuePhoto BLOB  NULL,
             issueCreatedDate TEXT NOT NULL,
             issueUpdatedDate TEXT NOT NULL,
             isDeleted boolean NOT NULL,
             Foreign Key (issueCategoryId) References issueCategory(id),
-
+            Foreign Key (issueUserId) References Users(id),
             Foreign Key (issueStatusId) References issueStatus(id)
             
         )
