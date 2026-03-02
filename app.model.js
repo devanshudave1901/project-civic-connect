@@ -41,14 +41,15 @@ async function registerTheUser(register)
     console.log("User registered successfully");
 }
 async  function insertIssue(issue){
+    const now = new Date();
  console.log(issue)
     let issueTitle = issue.issueTitle;
     let issueDescription = issue.issueDescription;
     let issueCategoryId =  parseInt(issue.issueCategory);
     let userId = 2;
     let issueStatusId = 1;
-    let issueCreatedDate = Date.now();
-    let issueUpdatedDate  = Date.now();
+    let issueCreatedDate = now.toISOString();
+    let issueUpdatedDate  = now.toISOString();
     let isDeleted = 0;
     let issuePhoto = issue.isssueImage;
    await dataBase.run("Insert into IssueLog (issueTitle, issueDescription, issueCategoryId, issueUserId, issueStatusId, issueCreatedDate, issueUpdatedDate, isDeleted, issuePhoto) values (?, ?, ?, ?, ?, ?, ?, ?, ?)",
