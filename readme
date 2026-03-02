@@ -1,0 +1,16 @@
+Hello,
+
+This is the application at this phase you will be able to login (if no data found it will return error)
+
+and ask you to register.
+
+you register and login you will see home page
+
+click on add issue and fill the form and on home page table you will see the data
+
+click on the id link to delete the entry and will be back on the homepage will all the result
+
+
+to run you can npm install and then node initdb.ja
+
+and once done ...run node app.ctrl.js
