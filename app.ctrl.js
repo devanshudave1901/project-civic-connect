@@ -31,18 +31,33 @@ app.get('/view/:id',async function (req, res) {
           data.statusOpen = true;
           data.statusProcessing = false;
           data.closed = false;
+          data.openedData = true;
+          data.dataSubmitted = true;
+
+
     }
     else if(statusDataReturned === 'In Progress')
     {
         data.statusOpen = true;
-        data.statusProcessing = true;
+        data.statusProcessing = false;
         data.closed = false;
+
+        data.proccesingPending = true;
+        data.proccessingDone = false;
+        data.openedData = true;
+
+
     }
     else if(statusDataReturned === 'Closed')
     {
+        data.statusProcessingTick = true;
+        data.statusProcessingFalse = true
         data.statusOpen = true;
+        data.proccessingDone = true;
         data.statusProcessing = true;
         data.closed = true;
+        data.openedData = false;
+
     }
 
 

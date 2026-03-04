@@ -315,15 +315,32 @@ in project document-->
                         </div>
 
                     </div>
+                    {{#dataSubmitted}}
 
-                    <div class="stepper-step stepper-active">
+                    <div class="stepper-step stepper-pending ">
+                    {{/dataSubmitted}}
+                    {{#proccesingPending}}
+
+                        <div class="stepper-step stepper-active ">
+                     {{/proccesingPending}}
+                    {{#openedData}}
+
+                    {{/openedData}}
+
+                    {{#statusProcessing}}
+
+                    <div class="stepper-step stepper-completed justify-content-center">
+
+                    {{/statusProcessing}}
                     <div class="stepper-circle">
-                        {{#statusProcessing}}
+
+
+                        {{#statusProcessingTick}}
 
                                 <svg
                                         viewBox="0 0 16 16"
                                         class="bi bi-check-lg"
-                                        fill="currentColor"
+                                        fill="white"
                                         height="16"
                                         width="16"
                                         xmlns="http://www.w3.org/2000/svg"
@@ -333,16 +350,57 @@ in project document-->
                                     ></path>
                                 </svg>
 
-                        {{/statusProcessing}}
+                        {{/statusProcessingTick}}
                     </div>
-                        <div class="stepper-line"></div>
+                    {{#dataSubmitted}}
+                        <div class="stepper-line" style="display: block"></div>
+
                         <div class="stepper-content">
                             <div class="stepper-title">Processing</div>
-                            <div class="stepper-status">In Progress</div>
+
+                            <div class="stepper-status">In-Process</div>
                         </div>
+                        {{/dataSubmitted}}
+                    {{#proccesingPending}}
+                        <div class="stepper-line" style="display: block"></div>
+
+                        <div class="stepper-content">
+                            <div class="stepper-title">Processing</div>
+
+                            <div class="stepper-status">In-Process</div>
+                        </div>
+
+                    {{/proccesingPending}}
+
+                    {{#proccessingDone}}
+                        <div class="stepper-line" style="display: block"></div>
+
+                        <div class="stepper-content">
+                            <div class="stepper-title">Processing</div>
+
+                            <div class="stepper-status">Completed</div>
+                        </div>
+                        {{/proccessingDone}}
+
+
+                    {{#statusProcessingFalse}}
+                        </div>
+                    {{/statusProcessingFalse}}
+                    {{#closed}}
+                    <div class="stepper-step stepper-completed">
+
+                    {{/closed}}
+                    {{#dataSubmitted}}
                     </div>
 
                     <div class="stepper-step stepper-pending">
+
+                    {{/dataSubmitted}}
+                    {{#proccesingPending}}
+                    </div>
+                        <div class="stepper-step stepper-pending">
+
+                    {{/proccesingPending}}
                     <div class="stepper-circle">
 
                         {{#closed}}
@@ -361,14 +419,28 @@ in project document-->
 
                         {{/closed}}
                     </div>
+                    {{#closed}}
+                        <div class="stepper-content">
+                            <div class="stepper-title">Closed</div>
+                            <div class="stepper-status">Completed</div>
+                        </div>
+                        {{/closed}}
+                    {{#dataSubmitted}}
                         <div class="stepper-content">
                             <div class="stepper-title">Closed</div>
                             <div class="stepper-status">Pending</div>
                         </div>
+                    {{/dataSubmitted}}
+                    {{#proccesingPending}}
+                        <div class="stepper-content">
+                            <div class="stepper-title">Closed</div>
+                            <div class="stepper-status">Pending</div>
+                        </div>
+                        {{/proccesingPending}}
                     </div>
 
                     <form id="statusChangeSection" class="w-100" action="/changeStatus" hidden="hidden">
-                        <label for="issueId" class="form-label hidden">Id</label>
+                        <label for="issueId" class="form-label hidden" hidden="hidden">Id</label>
                         <input type="text" class="hidden" id="issueId" name="issueId" value="{{id}}" hidden>
                         <label for="issueChangeStatus" class="form-label">Status Options</label>
                         <select class="form-select" name="issueChangeStatus" aria-label="issueChangeStatus">
