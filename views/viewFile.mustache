@@ -614,7 +614,7 @@ in project document-->
 
     document.getElementById("delete").addEventListener("click", function() {
         if (confirm("Are you sure you want to delete this issue?")) {
-            window.location.href = "/delete/{{id}}";
+            window.location.href = "/delete/{{id}}/?user={{issueUserId}}";
         }
     });
 

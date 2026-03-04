@@ -67,7 +67,7 @@ app.get('/view/:id',async function (req, res) {
 })
 app.get('/delete/:id',function (req,res) {
     let issueId = req.params.id;
-    Model.deleteIssue(issueId).then(r => res.redirect('/home'));
+    Model.deleteIssue(issueId).then(r => res.redirect('/home?user=' + req.query.user));
 })
 app.get('/edit/:id',async function (req,res) {
 
