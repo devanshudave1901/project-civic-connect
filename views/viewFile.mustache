@@ -1,3 +1,5 @@
+<!--Design Reference from - Uiverse.io. Individual reference are given in html lines and css style tag as mentioned
+in project document-->
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,6 +7,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./style.css">
     <title>View Issue</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
@@ -12,41 +15,493 @@
 </head>
 <style>
     body{
-        background: #e0e0e0;
-        display: flex;
+        display: block;
         justify-content: center;
         align-items: center;
+        background-color: #7E8D85;
         height: 100vh;
+        overflow: hidden;
     }
-    /* From Uiverse.io by Codewithvinay */
+    /* From Uiverse.io by Codewithvinay - design from this website */
     .card {
-
-        border-radius: 50px;
+        border-radius: 20px;
         background: #e0e0e0;
-        box-shadow: 20px 20px 60px #bebebe,
-        -20px -20px 60px #ffffff;
+        /*box-shadow: 20px 20px 60px #bebebe,*/
+        /*-20px -20px 60px #ffffff;*/
         /* adding my own design to make it appropriate for my page and bootstrap classes that I feel is appropriate */
-        padding: 50px;
+        padding:30px;
 
+    }
+    /* From Uiverse.io by PriyanshuGupta28  - design from this website--> */
+    .stepper-box {
+        background-color: white;
+        border-radius: 12px;
+        padding: 32px;
+        width: 400px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .stepper-step {
+        display: flex;
+        margin-bottom: 32px;
+        position: relative;
+    }
+
+    .stepper-step:last-child {
+        margin-bottom: 0;
+    }
+
+    .stepper-line {
+        position: absolute;
+        left: 19px;
+        top: 40px;
+        bottom: -32px;
+        width: 2px;
+        background-color: #e2e8f0;
+        z-index: 1;
+    }
+
+    .stepper-step:last-child .stepper-line {
+        display: none;
+    }
+
+    .stepper-circle {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 16px;
+        z-index: 2;
+    }
+
+    .stepper-completed .stepper-circle {
+        background-color: #0f172a;
+        color: white;
+    }
+
+    .stepper-active .stepper-circle {
+        border: 2px solid #0f172a;
+        color: #0f172a;
+    }
+
+    .stepper-pending .stepper-circle {
+        border: 2px solid #e2e8f0;
+        color: #94a3b8;
+    }
+
+    .stepper-content {
+        flex: 1;
+    }
+
+    .stepper-title {
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    .stepper-completed .stepper-title {
+        color: #0f172a;
+    }
+
+    .stepper-active .stepper-title {
+        color: #0f172a;
+    }
+
+    .stepper-pending .stepper-title {
+        color: #94a3b8;
+    }
+
+    .stepper-status {
+        font-size: 13px;
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 12px;
+        margin-top: 4px;
+    }
+
+    .stepper-completed .stepper-status {
+        background-color: #dcfce7;
+        color: #166534;
+    }
+
+    .stepper-active .stepper-status {
+        background-color: #dbeafe;
+        color: #1d4ed8;
+    }
+
+    .stepper-pending .stepper-status {
+        background-color: #f1f5f9;
+        color: #64748b;
+    }
+
+    .stepper-time {
+        font-size: 12px;
+        color: #94a3b8;
+        margin-top: 4px;
+    }
+
+    .stepper-controls {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 32px;
+    }
+
+    .stepper-button {
+        padding: 8px 16px;
+        border-radius: 6px;
+        border: 1px solid #e2e8f0;
+        background-color: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .stepper-button-primary {
+        background-color: #0f172a;
+        color: white;
+        border-color: #0f172a;
+    }
+    /* From Uiverse.io by Yaya12085 */
+    .plan {
+        border-radius: 16px;
+        box-shadow: 0 30px 30px -25px rgba(0, 38, 255, 0.205);
+        padding: 20px;
+        background-color: #fff;
+        color: #697e91;
+        max-width: 400px;
+    }
+
+    .plan strong {
+        font-weight: 600;
+        color: #425275;
+    }
+
+    .plan .inner {
+        align-items: center;
+        padding: 20px;
+        padding-top: 40px;
+        background-color: #ecf0ff;
+        border-radius: 12px;
+        position: relative;
+    }
+
+    .plan .pricing {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #bed6fb;
+        border-radius: 99em 0 0 99em;
+        display: flex;
+        align-items: center;
+        padding: 0.625em 0.75em;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #425475;
+    }
+
+    .plan .pricing small {
+        color: #707a91;
+        font-size: 0.75em;
+        margin-left: 0.25em;
+    }
+
+    .plan .title {
+        font-weight: 600;
+        font-size: 1.25rem;
+        color: #425675;
+    }
+
+    .plan .title + * {
+        margin-top: 0.75rem;
+    }
+
+    .plan .info + * {
+        margin-top: 1rem;
+    }
+
+    .plan .features {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .plan .features li {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .plan .features li + * {
+        margin-top: 0.75rem;
+    }
+
+    .plan .features .icon {
+        background-color: #1FCAC5;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+    }
+
+    .plan .features .icon svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .plan .features + * {
+        margin-top: 1.25rem;
+    }
+
+    .plan .action {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+    }
+
+    .plan .button {
+        background-color: #6558d3;
+        border-radius: 6px;
+        color: #fff;
+        font-weight: 500;
+        font-size: 1.125rem;
+        text-align: center;
+        border: 0;
+        outline: 0;
+        width: 100%;
+        padding: 0.625em 0.75em;
+        text-decoration: none;
+    }
+
+    .plan .button:hover, .plan .button:focus {
+        background-color: #4133B7;
     }
 </style>
 <body>
-<div class="card  mx-auto">
-    <h2 class="d-flex justify-content-center align-items-center">{{issueTitle}}</h2>
-    <div class="card-body">
 
-        <p class="card-text">Description: {{issueDescription}}</p>
-        <p class="card-text">Category: {{ categoryName}}</p>
-        <p class="card-text">Created Date: {{issueCreatedDate}}</p>
-        <p class="card-text">Status: {{statusName}}</p>
+<div class="containerCard">
+    <h2 class="d-flex  justify-content-center text-white font-italic font-weight-bold"> Issue Details </h2>
+<div class=" container vh-100 m-auto  d-flex align-items-start mt-5 justify-content-center">
+    <div class="row g-3 h-75">
+        <div class="col ">
+            <div class="card-body h-100 ">
+                <!-- Design Reference - From Uiverse.io by PriyanshuGupta28 - design from this website-->
+                <div class="stepper-box align-content-center h-100 p-3">
+                    <div class="stepper-step stepper-completed justify-content-center">
+                        <div class="stepper-circle">
+                            <svg
+                                    viewBox="0 0 16 16"
+                                    class="bi bi-check-lg"
+                                    fill="currentColor"
+                                    height="16"
+                                    width="16"
+                                    xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                        d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"
+                                ></path>
+                            </svg>
+                        </div>
 
-        <button type="submit" id="edit" class="btn btn-primary d-inline-block  me-5">Edit</button>
+                            <div class="stepper-line"></div>
 
-        <button type="submit" id="delete" class="btn btn-primary d-inline-block  me-5">Delete</button>
+                        <div class="stepper-content">
+                            <div class="stepper-title">Open</div>
+                            <div class="stepper-status">Completed</div>
+                            <div class="stepper-time">May 28, 10:24 AM</div>
+                        </div>
 
+                    </div>
+
+                    <div class="stepper-step stepper-active">
+                    <div class="stepper-circle">
+                        {{#statusProcessing}}
+
+                                <svg
+                                        viewBox="0 0 16 16"
+                                        class="bi bi-check-lg"
+                                        fill="currentColor"
+                                        height="16"
+                                        width="16"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                            d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"
+                                    ></path>
+                                </svg>
+
+                        {{/statusProcessing}}
+                    </div>
+                        <div class="stepper-line"></div>
+                        <div class="stepper-content">
+                            <div class="stepper-title">Processing</div>
+                            <div class="stepper-status">In Progress</div>
+                            <div class="stepper-time">May 29, 02:15 PM</div>
+                        </div>
+                    </div>
+
+                    <div class="stepper-step stepper-pending">
+                    <div class="stepper-circle">
+
+                        {{#closed}}
+                                <svg
+                                        viewBox="0 0 16 16"
+                                        class="bi bi-check-lg"
+                                        fill="currentColor"
+                                        height="16"
+                                        width="16"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                            d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"
+                                    ></path>
+                                </svg>
+
+                        {{/closed}}
+                    </div>
+                        <div class="stepper-content">
+                            <div class="stepper-title">Closed</div>
+                            <div class="stepper-status">Pending</div>
+                            <div class="stepper-time">Estimated: May 30</div>
+                        </div>
+                    </div>
+
+                    <div class="stepper-controls d-flex align-items-center justify-content-center">
+
+                        <button id="changeStatusButton" class="stepper-button stepper-button-primary ">
+                            Change Status
+                            <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    fill="currentColor"
+                                    class="bi bi-arrow-right"
+                                    viewBox="0 0 16 16"
+                            >
+                                <path
+                                        fill-rule="evenodd"
+                                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                                ></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-5">
+            <!-- From Uiverse.io by Yaya12085 -->
+            <div class="plan h-100">
+                <div class="inner">
+			<span class="pricing">
+				<span>
+					{{categoryName}}
+				</span>
+			</span>
+                    <p class="title">{{issueTitle}}</p>
+                    <p class="info">{{issueDescription}}</p>
+                    <ul class="features">
+                        <li>
+					<span class="icon">
+						<svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+							<path d="M0 0h24v24H0z" fill="none"></path>
+							<path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
+						</svg>
+					</span>
+                            <span>If the situation worsens, call 911</span>
+                        </li>
+                        <li>
+					<span class="icon">
+						<svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+							<path d="M0 0h24v24H0z" fill="none"></path>
+							<path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
+						</svg>
+					</span>
+                            <span>Issue Monitored<strong></strong></span>
+                        </li>
+                        <li>
+					<span class="icon">
+						<svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+							<path d="M0 0h24v24H0z" fill="none"></path>
+							<path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
+						</svg>
+					</span>
+                            <span>Relevant Department Informed</span>
+                        </li>
+                    </ul>
+                    <div class="action mt-5">
+                        <a class="button" href="#">
+                           Edit the Issue
+                        </a>
+
+                    </div>
+                    <div class="action mt-4">
+                        <a class="button" href="#">
+                            Delete
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+<!--            <div class="card h-75 p-3">-->
+<!--                <h2 class="">{{issueTitle}}</h2>-->
+<!--                    <div class="card-body">-->
+
+<!--                        <p class="card-text">Description: {{issueDescription}}</p>-->
+<!--                        <p class="card-text">Category: {{ categoryName}}</p>-->
+<!--                        <p class="card-text">Created Date: {{issueCreatedDate}}</p>-->
+<!--                        <p class="card-text">Status: {{statusName}}</p>-->
+
+<!--                        <button type="submit" id="edit" class="btn btn-primary d-inline-block  me-5">Edit</button>-->
+
+<!--                        <button type="submit" id="delete" class="btn btn-primary d-inline-block  me-5">Delete</button>-->
+
+<!--                    </div>-->
+<!--            </div>-->
+
+        </div>
+        <div class="col" >
+
+
+        <div class="d-flex align-items-center h-auto  card p-1" style="height:300px">
+                <div class="card-header w-100">
+                    <h3 class="">Comments</h3>
+                </div>
+                <div class=" d-flex align-items-center justify-content-center w-100 ">
+                    <p class="card-text">This issue is being monitored</p>
+                </div>
+                <div class="card-footer d-flex align-items-end justify-content-end w-100">
+                    <button class="btn btn-primary w-100">
+                        Add Comment
+                    </button>
+                </div>
+            </div>
+
+        </div>
     </div>
 
 </div>
+</div>
+<!--<div class="card d-flex justify-content-center align-items-center mx-auto mt-5">-->
+<!--    <h2 class="">{{issueTitle}}</h2>-->
+<!--    <div class="card-body">-->
+
+<!--        <p class="card-text">Description: {{issueDescription}}</p>-->
+<!--        <p class="card-text">Category: {{ categoryName}}</p>-->
+<!--        <p class="card-text">Created Date: {{issueCreatedDate}}</p>-->
+<!--        <p class="card-text">Status: {{statusName}}</p>-->
+
+<!--        <button type="submit" id="edit" class="btn btn-primary d-inline-block  me-5">Edit</button>-->
+
+<!--        <button type="submit" id="delete" class="btn btn-primary d-inline-block  me-5">Delete</button>-->
+
+<!--    </div>-->
+
+<!--</div>-->
 <script>
     document.getElementById("edit").addEventListener("click", function() {
         window.location.href = "/edit/{{id}}";
@@ -57,6 +512,10 @@
             window.location.href = "/delete/{{id}}";
         }
     });
+    document.getElementById("changeStatusButton").addEventListener("click", function ()
+    {
+        window.location.href = "/changeStatus/{{id}}";
+    })
 </script>
 </body>
 </html>

@@ -24,6 +24,27 @@ app.get('/',function (req,res){
 app.get('/view/:id',async function (req, res) {
     let issueId = req.params.id;
     let data = await Model.getIssueById(issueId);
+    if(data.statusName === 'Open')
+    {
+          data.statusOpen = true;
+          data.statusProcessing = false;
+          data.closed = false;
+    }
+    else if(data.statusName === 'In Progress')
+    {
+        data.statusOpen = true;
+        data.statusProcessing = true;
+        data.closed = false;
+    }
+    else if(data.statusName === 'Closed')
+    {
+        data.statusOpen = true;
+        data.statusProcessing = true;
+        data.closed = true;
+    }
+
+
+    data.title21 = "View Issue";
     console.log(data);
     res.render('viewFile', data);
 })
@@ -33,9 +54,11 @@ app.get('/delete/:id',function (req,res) {
 })
 app.get('/home',async function (req, res) {
 
-    let tableData = await Model.getAllIssues();
+    console.log("User ID from query parameter: " + req.query.user);
+    let tableData = await Model.getAllIssues(req.query);
     let data = {
         title1: "Home Page",
+        userId: req.query.user,
         tableData: []
 
     }
@@ -46,14 +69,7 @@ app.get('/home',async function (req, res) {
     console.log(data);
     res.render('home', data);
 
-    // (tableData => {
-    //     console.log([r]);
-    //     let data = {
-    //         title: "Home Page",
-    //         tableData: r
-    //     }
-    //     res.render('home', {data});
-    // });
+
 
 
 });
@@ -72,7 +88,7 @@ app.get('/login',function (req,res) {
 app.get('/loginUser',async  function (req,res) {
 
     let result = await Model.getLogin(req.query);
-    result.forEach(function (row) {
+    for (const row of result) {
         let count = row['Count(*)'];
         console.log(count);
         if(count === 0)
@@ -90,17 +106,24 @@ app.get('/loginUser',async  function (req,res) {
         }
         else
         {
-            res.redirect('home');
+            var userDetails = await Model.loginUserDetails(req.query);
+            var data = {
+                user: userDetails
+            }
+
+            res.redirect(`home/?user=${userDetails[0].id}`);
         }
-    })
+    }
 
 });
+
 app.get('/submitIssue', async  function (req,res) {
     let issueData = req.query;
-    console.log(req.query);
-    await Model.insertIssue(issueData).then(r => res.render('home'));
+
+    await Model.insertIssue(issueData).then(r => res.redirect('home/?user=' + issueData.issueUser));
 
 })
+
 app.get('/register',function (req,res) {
     var data = {
         title: "Register Page",
@@ -148,9 +171,17 @@ app.get('/registerTheUser',async function (req, res) {
 app.get("/background_landingPage.jpg", function (req,res){
     res.sendFile(__dirname + "/views/background_landingPage.jpg")
 });
-
+app.get("big-city.jpg", function (req,res){
+    console.log("Image called")
+    res.sendFile(__dirname + "/views/big-city.jpg")
+});
 app.get('/registerIssue',function (req,res) {
-    res.render('addIssue');
+
+    console.log("User ID from query parameter in register issue: " + req.query.user);
+    const data = {
+        userId: req.query.user
+    }
+    res.render('addIssue',data );
 });
 
 app.get('/skyline.jpg', function (req,res){

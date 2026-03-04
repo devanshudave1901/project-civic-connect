@@ -12,6 +12,16 @@ async function dataBaseConnection() {
     console.log("Database connection established");
 }
 
+async function loginUserDetails(login){
+
+    var emailAddress = login.userEmailAddress;
+
+    const results = await dataBase.all("sELECT * FROM Users WHERE email = ?", [emailAddress])
+
+    return results;
+}
+
+
 async function getLogin(login)
 {
 
@@ -25,8 +35,8 @@ async function getLogin(login)
     return results
 }
 
-async function getAllIssues(){
-    const results = await dataBase.all("Select IssueLog.id, IssueLog.IssueCategoryId, IssueLog.issueTitle,IssueLog.issueDescription ,IssueLog.issueCreatedDate,IssueLog.issueUpdatedDate,IssueLog.isDeleted, IssueCategory.categoryName, IssueStatus.statusName from IssueLog INNER JOIN IssueCategory ON IssueLog.issueCategoryId = IssueCategory.id INNER JOIN IssueStatus ON IssueLog.issueStatusId = IssueStatus.id where IssueLog.isDeleted = 0")
+async function getAllIssues(user1){
+    const results = await dataBase.all("Select IssueLog.id, IssueLog.IssueCategoryId, IssueLog.issueTitle,IssueLog.issueDescription ,IssueLog.issueCreatedDate,IssueLog.issueUpdatedDate,IssueLog.isDeleted, IssueCategory.categoryName, IssueStatus.statusName from IssueLog INNER JOIN IssueCategory ON IssueLog.issueCategoryId = IssueCategory.id INNER JOIN IssueStatus ON IssueLog.issueStatusId = IssueStatus.id where IssueLog.isDeleted = 0 and issueUserId = ?", [user1.user])
     return results
 }
 
@@ -58,11 +68,12 @@ async function registerTheUser(register)
 }
 async  function insertIssue(issue){
     const now = new Date();
+
  console.log(issue)
     let issueTitle = issue.issueTitle;
     let issueDescription = issue.issueDescription;
     let issueCategoryId =  parseInt(issue.issueCategory);
-    let userId = 2;
+    let userId = issue.issueUser;
     let issueStatusId = 1;
     let issueCreatedDate = now.toISOString();
     let issueUpdatedDate  = now.toISOString();
@@ -84,4 +95,4 @@ async function checkEmailForRegister(register)
     return results
 }
 
-module.exports = {dataBaseConnection, getLogin,checkEmailForRegister,registerTheUser,insertIssue,getAllIssues,getIssueById,deleteIssue}
+module.exports = {dataBaseConnection, getLogin,checkEmailForRegister,registerTheUser,insertIssue,getAllIssues,getIssueById,deleteIssue,loginUserDetails}
