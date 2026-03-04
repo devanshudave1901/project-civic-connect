@@ -18,9 +18,9 @@ in project document-->
         display: block;
         justify-content: center;
         align-items: center;
-        background-color: #7E8D85;
+        background-color: #0f172a;
         height: 100vh;
-        overflow: hidden;
+        overflow: auto;
     }
     /* From Uiverse.io by Codewithvinay - design from this website */
     .card {
@@ -285,7 +285,7 @@ in project document-->
 
 <div class="containerCard">
     <h2 class="d-flex  justify-content-center text-white font-italic font-weight-bold"> Issue Details </h2>
-<div class=" container vh-100 m-auto  d-flex align-items-start mt-5 justify-content-center">
+<div class=" container vh-auto m-auto  d-flex align-items-start mt-5 justify-content-center">
     <div class="row g-3 h-75">
         <div class="col ">
             <div class="card-body h-100 ">
@@ -312,7 +312,6 @@ in project document-->
                         <div class="stepper-content">
                             <div class="stepper-title">Open</div>
                             <div class="stepper-status">Completed</div>
-                            <div class="stepper-time">May 28, 10:24 AM</div>
                         </div>
 
                     </div>
@@ -340,7 +339,6 @@ in project document-->
                         <div class="stepper-content">
                             <div class="stepper-title">Processing</div>
                             <div class="stepper-status">In Progress</div>
-                            <div class="stepper-time">May 29, 02:15 PM</div>
                         </div>
                     </div>
 
@@ -366,27 +364,51 @@ in project document-->
                         <div class="stepper-content">
                             <div class="stepper-title">Closed</div>
                             <div class="stepper-status">Pending</div>
-                            <div class="stepper-time">Estimated: May 30</div>
                         </div>
                     </div>
 
+                    <form id="statusChangeSection" class="w-100" action="/changeStatus" hidden="hidden">
+                        <label for="issueId" class="form-label hidden">Id</label>
+                        <input type="text" class="hidden" id="issueId" name="issueId" value="{{id}}" hidden>
+                        <label for="issueChangeStatus" class="form-label">Status Options</label>
+                        <select class="form-select" name="issueChangeStatus" aria-label="issueChangeStatus">
+                            <option selected>Select Status</option>
+                            <option value="2">Processing</option>
+                            <option value="3">Closed</option>
+
+
+                        </select>
+                        <button class="btn btn-primary mt-3 w-100" id="changeStatusButton">
+                            Change Status
+                        </button>
+                        <button class="btn btn-secondary mt-3 w-100" id="cancelButton">
+                            Cancel
+                        </button>
+                    </form>
+<!--                    <button type="submit"  class="btn btn-primary d-inline-block  me-5">Edit</button>-->
+<!--                    <div class="action mt-5">-->
+<!--                        <a id="stats" class="button" href="#">-->
+<!--                            Edit the Issue-->
+<!--                        </a>-->
+
+<!--                    </div>-->
                     <div class="stepper-controls d-flex align-items-center justify-content-center">
 
-                        <button id="changeStatusButton" class="stepper-button stepper-button-primary ">
+                        <button id="stats"  type="submit" class="stepper-button stepper-button-primary test ">
                             Change Status
-                            <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="16"
-                                    height="16"
-                                    fill="currentColor"
-                                    class="bi bi-arrow-right"
-                                    viewBox="0 0 16 16"
-                            >
-                                <path
-                                        fill-rule="evenodd"
-                                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
-                                ></path>
-                            </svg>
+<!--                            <svg-->
+<!--                                    xmlns="http://www.w3.org/2000/svg"-->
+<!--                                    width="16"-->
+<!--                                    height="16"-->
+<!--                                    fill="currentColor"-->
+<!--                                    class="bi bi-arrow-right"-->
+<!--                                    viewBox="0 0 16 16"-->
+<!--                            >-->
+<!--                                <path-->
+<!--                                        fill-rule="evenodd"-->
+<!--                                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"-->
+<!--                                ></path>-->
+<!--                            </svg>-->
                         </button>
                     </div>
                 </div>
@@ -434,13 +456,13 @@ in project document-->
                         </li>
                     </ul>
                     <div class="action mt-5">
-                        <a class="button" href="#">
+                        <a id="edit" class="button" href="#">
                            Edit the Issue
                         </a>
 
                     </div>
                     <div class="action mt-4">
-                        <a class="button" href="#">
+                        <a id="delete" class="button" href="#">
                             Delete
                         </a>
 
@@ -503,6 +525,23 @@ in project document-->
 
 <!--</div>-->
 <script>
+    document.getElementById("stats").addEventListener("click", function ()
+    {
+       document.getElementById("statusChangeSection").hidden = false;
+
+    });
+   // document.getElementById("changeStatusButton").addEventListener("click", function ()
+    //{
+        // Here you can add the logic to change the status of the issue
+       // alert("Status changed successfully!");
+       // document.getElementById("statusChangeSection").hidden = true;
+//window.location.href = "/statusChange/{{id}}";
+   // });
+    document.getElementById("cancelButton").addEventListener("click", function ()
+    {
+        document.getElementById("statusChangeSection").hidden = true;
+
+    });
     document.getElementById("edit").addEventListener("click", function() {
         window.location.href = "/edit/{{id}}";
     });
@@ -512,10 +551,7 @@ in project document-->
             window.location.href = "/delete/{{id}}";
         }
     });
-    document.getElementById("changeStatusButton").addEventListener("click", function ()
-    {
-        window.location.href = "/changeStatus/{{id}}";
-    })
+
 </script>
 </body>
 </html>

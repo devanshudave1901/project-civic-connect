@@ -24,19 +24,21 @@ app.get('/',function (req,res){
 app.get('/view/:id',async function (req, res) {
     let issueId = req.params.id;
     let data = await Model.getIssueById(issueId);
-    if(data.statusName === 'Open')
+
+    let statusDataReturned = data.statusName;
+    if(statusDataReturned === 'Open')
     {
           data.statusOpen = true;
           data.statusProcessing = false;
           data.closed = false;
     }
-    else if(data.statusName === 'In Progress')
+    else if(statusDataReturned === 'In Progress')
     {
         data.statusOpen = true;
         data.statusProcessing = true;
         data.closed = false;
     }
-    else if(data.statusName === 'Closed')
+    else if(statusDataReturned === 'Closed')
     {
         data.statusOpen = true;
         data.statusProcessing = true;
@@ -72,6 +74,11 @@ app.get('/home',async function (req, res) {
 
 
 
+});
+
+app.get('/changeStatus', async function (req,res) {
+   await Model.changeStatus(req.query);
+   res.redirect('/view/' + req.query.issueId);
 });
 app.get('/login',function (req,res) {
 
