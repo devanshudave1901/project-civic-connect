@@ -30,18 +30,23 @@
         height: 70%;
     }
 </style>
-<body>
 
 <div class="card  mx-auto">
-    <h2 class="d-flex justify-content-center align-items-center">Add Your Issue</h2>
+    <h2 class="d-flex justify-content-center align-items-center">{{dataForm.title21}}</h2>
 
+        {{#addIssue}}
+        <form class="mt-5" action="/submitIssue">
 
-        <form class="mt-5" action="/submitIssue"  >
+        {{/addIssue}}
+        {{#edit}}
+            <form class="mt-5" action="/updateIssue">
+            <input value="{{dataForm.id}}" name="issueId" hidden="hidden" >
+        {{/edit}}
             <div class="container">
                 <div class="row mt-3">
                     <div class="col">
                         <label for="issueCategory" class="form-label">Category</label>
-                        <select class="form-select" name="issueCategory" aria-label="issueCategory">
+                        <select class="form-select" id="issueCategory" name="issueCategory" aria-label="issueCategory">
                             <option selected>Select Category</option>
                             <option value="1">Transit</option>
                             <option value="2">Roads</option>
@@ -60,25 +65,39 @@
                 <div class="row mt-3 mb-5">
                     <div class="col">
                         <label for="issueDescription" class="form-label">Briefly Explain The Issue</label>
-                        <textarea  name="issueDescription"  class="form-control h-100" id="issueDescription" value="{{dataForm.issueDescription}}" required></textarea>
+                        <textarea  name="issueDescription"  class="form-control h-100" id="issueDescription" required>{{dataForm.issueDescription}}</textarea>
                     </div>
 
                 </div>
                 <div class="row mt-3">
                     <div class="col">
                         <label for="isssueImage" class="form-label">Upload Image</label>
-                        <input type="file"  name="isssueImage" class="form-control" id="isssueImage">
+                        <input type="file"  name="isssueImage" value="{{dataForm.issuePhoto}}" class="form-control" id="isssueImage">
                     </div>
                     <div class="col" hidden>
                         <label for="issueUser" class="form-label">User</label>
-                        <input type="text"  name="issueUser" class="form-control" value="{{userId}}" id="issueUser">
+                        <input type="text"  name="issueUser" class="form-control" value="{{dataForm.issueUserId}}" id="issueUser">
                     </div>
 
                 </div>
-                <button type="submit" class="btn btn-primary mt-5 w-100">Submit</button>
+                {{#edit}}
+                    <button type="submit" class="btn btn-primary mt-5 w-100">Update</button>
+
+                {{/edit}}
+                {{#addIssue}}
+                    <button type="submit" class="btn btn-primary mt-5 w-100">Submit</button>
+
+                {{/addIssue}}
             </div>
         </form>
 
+    <script>
+        let categorySelect = {{dataForm.issueCategoryId}};
+        let categorySelectElement = document.getElementById('issueCategory');
+
+        categorySelectElement.value = categorySelect;
+
+    </script>
 
 </div>
 </body>

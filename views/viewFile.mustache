@@ -602,20 +602,14 @@ in project document-->
        document.getElementById("statusChangeSection").hidden = false;
 
     });
-   // document.getElementById("changeStatusButton").addEventListener("click", function ()
-    //{
-        // Here you can add the logic to change the status of the issue
-       // alert("Status changed successfully!");
-       // document.getElementById("statusChangeSection").hidden = true;
-//window.location.href = "/statusChange/{{id}}";
-   // });
+
     document.getElementById("cancelButton").addEventListener("click", function ()
     {
         document.getElementById("statusChangeSection").hidden = true;
 
     });
     document.getElementById("edit").addEventListener("click", function() {
-        window.location.href = "/edit/{{id}}";
+        window.location.href = "/edit/{{id}}/?user={{issueUserId}}";
     });
 
     document.getElementById("delete").addEventListener("click", function() {

@@ -47,7 +47,7 @@ async  function changeStatus(status){
 }
 
 async function getIssueById(id){
-    const result = await dataBase.get("Select IssueLog.id, IssueLog.IssueCategoryId, IssueLog.issueTitle,IssueLog.issueDescription ,IssueLog.issueCreatedDate,IssueLog.issueUpdatedDate,IssueLog.isDeleted, IssueCategory.categoryName, IssueStatus.statusName from IssueLog INNER JOIN IssueCategory ON IssueLog.issueCategoryId = IssueCategory.id INNER JOIN IssueStatus ON IssueLog.issueStatusId = IssueStatus.id where IssueLog.id = ?", [id])
+    const result = await dataBase.get("Select IssueLog.id, IssueLog.IssueCategoryId, IssueLog.issueTitle,IssueLog.issueDescription ,IssueLog.issueCreatedDate,IssueLog.issueUserId,IssueLog.issueUpdatedDate,IssueLog.isDeleted, IssueLog.issuePhoto,IssueCategory.categoryName, IssueStatus.statusName from IssueLog INNER JOIN IssueCategory ON IssueLog.issueCategoryId = IssueCategory.id INNER JOIN IssueStatus ON IssueLog.issueStatusId = IssueStatus.id where IssueLog.id = ?", [id])
     return result;
 
 }
@@ -56,6 +56,33 @@ async  function deleteIssue(id){
     console.log("Issue deleted successfully");
 }
 
+async  function updateIssue(issue){
+    console.log(issue);
+    const now = new Date();
+    console.log("Inside update issue function", issue.issueUser);
+    let issueTitle = issue.issueTitle;
+    let issueDescription = issue.issueDescription;
+    let issueCategoryId =  parseInt(issue.issueCategory);
+    let userId = issue.issueUser;
+
+    let issueUpdatedDate  = now.toISOString();
+    let isDeleted = 0;
+    let issuePhoto = null;
+    if(issue.issueImage === undefined)
+    {
+        issue.issueImage = null;
+    }
+    else{
+        issuePhoto = issue.issueImage;
+    }
+
+
+
+    await dataBase.run("Update IssueLog Set issueTitle = ?, issueDescription = ?, issueCategoryId = ?, issueUserId = ?,  issueUpdatedDate = ?, isDeleted = ?, issuePhoto = ? where id = ?",
+        [issueTitle, issueDescription, issueCategoryId, userId,  issueUpdatedDate, isDeleted, issuePhoto,issue.issueId]);
+    return issue.id;
+    console.log("Issue updated successfully");
+}
 async function registerTheUser(register)
 {
     console.log(register);
@@ -101,4 +128,4 @@ async function checkEmailForRegister(register)
     return results
 }
 
-module.exports = {dataBaseConnection,changeStatus, getLogin,checkEmailForRegister,registerTheUser,insertIssue,getAllIssues,getIssueById,deleteIssue,loginUserDetails}
+module.exports = {dataBaseConnection,changeStatus,updateIssue, getLogin,checkEmailForRegister,registerTheUser,insertIssue,getAllIssues,getIssueById,deleteIssue,loginUserDetails}

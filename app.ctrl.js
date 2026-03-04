@@ -69,6 +69,19 @@ app.get('/delete/:id',function (req,res) {
     let issueId = req.params.id;
     Model.deleteIssue(issueId).then(r => res.redirect('/home'));
 })
+app.get('/edit/:id',async function (req,res) {
+
+    let issueId = req.params.id;
+        let data = await Model.getIssueById(issueId);
+        console.log(data);
+   let dataForm1 = {
+        dataForm: data,
+       edit:true
+    }
+        data.title21 = "Edit Issue";
+        res.render('addIssue', dataForm1);
+
+})
 app.get('/home',async function (req, res) {
 
     console.log("User ID from query parameter: " + req.query.user);
@@ -145,6 +158,16 @@ app.get('/submitIssue', async  function (req,res) {
     await Model.insertIssue(issueData).then(r => res.redirect('home/?user=' + issueData.issueUser));
 
 })
+app.get('/updateIssue', async  function (req,res) {
+    let issueDataForm = req.query;
+
+    const result = await  Model.updateIssue(issueDataForm);
+    console.log("Result from update issue: " + result);
+    console.log(issueDataForm)
+    res.redirect('view/' +issueDataForm.issueId);
+
+
+});
 
 app.get('/register',function (req,res) {
     var data = {
@@ -201,7 +224,8 @@ app.get('/registerIssue',function (req,res) {
 
     console.log("User ID from query parameter in register issue: " + req.query.user);
     const data = {
-        userId: req.query.user
+        userId: req.query.user,
+        addIssue: true,
     }
     res.render('addIssue',data );
 });
