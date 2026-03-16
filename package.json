@@ -3,6 +3,7 @@
     "@tailwindcss/cli": "^4.2.1",
     "bootstrap": "^5.3.8",
     "express": "^5.2.1",
+    "express-fileupload": "^1.5.2",
     "mustache-express": "^1.3.2",
     "nodemon": "^3.1.14",
     "sqlite": "^5.1.1",

@@ -1,6 +1,7 @@
 const sqlite3 = require('sqlite3').verbose()
 const sqlite = require('sqlite');
 const {restart} = require("nodemon");
+const fs = require('fs');
 
 let dataBase;
 
@@ -101,8 +102,7 @@ async function registerTheUser(register)
 }
 async  function insertIssue(issue){
     const now = new Date();
-
- console.log(issue)
+    console.log("Hello, issue \n", issue);
     let issueTitle = issue.issueTitle;
     let issueDescription = issue.issueDescription;
     let issueCategoryId =  parseInt(issue.issueCategory);
@@ -111,7 +111,7 @@ async  function insertIssue(issue){
     let issueCreatedDate = now.toISOString();
     let issueUpdatedDate  = now.toISOString();
     let isDeleted = 0;
-    let issuePhoto = issue.isssueImage;
+    let issuePhoto = issue.issuePhoto;
    await dataBase.run("Insert into IssueLog (issueTitle, issueDescription, issueCategoryId, issueUserId, issueStatusId, issueCreatedDate, issueUpdatedDate, isDeleted, issuePhoto) values (?, ?, ?, ?, ?, ?, ?, ?, ?)",
         [issueTitle, issueDescription, issueCategoryId, userId, issueStatusId, issueCreatedDate, issueUpdatedDate, isDeleted, issuePhoto]);
 

@@ -1,10 +1,14 @@
 const express = require('express');
 const app = express();
+const imageUpload = require('express-fileupload');
 
-
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+app.use(imageUpload());
 
 const mustache = require('mustache-express');
 const Model = require('./app.model');
+const buffer = require("buffer");
 
 
 
@@ -12,8 +16,6 @@ app.engine('mustache', mustache());
 app.set('view engine', 'mustache');
 
 app.set('views', __dirname + '/views');
-
-
 
 Model.dataBaseConnection();
 app.get('/',function (req,res){
@@ -63,6 +65,21 @@ app.get('/view/:id',async function (req, res) {
 
     data.title21 = "View Issue";
     console.log(data);
+    // changing data.issuePhoto which has buffer.base64 to viewable image.
+    if (data.issuePhoto !== null) {
+
+
+        let image = data.issuePhoto;
+
+        const bufferFrom = Buffer.from(image, 'base64');
+        const base64Data = bufferFrom.toString('base64');
+        let dataUrl = 'data:image/jpg;base64,' + base64Data;
+
+        data.issuePhoto = dataUrl;
+
+
+    }
+
     res.render('viewFile', data);
 })
 app.get('/delete/:id',function (req,res) {
@@ -74,9 +91,21 @@ app.get('/edit/:id',async function (req,res) {
     let issueId = req.params.id;
         let data = await Model.getIssueById(issueId);
         console.log(data);
-   let dataForm1 = {
+    let dataForm1 = {
         dataForm: data,
        edit:true
+    }
+    console.log("Image " , data.issuePhoto);
+    // changing the buffer data of the image to base64 string to be able to render it on the edit page
+    if(data.issuePhoto !== null)
+    {
+        // making the buffer in a way that it can be reuploaded to the input type file on the edit page
+        let bufferData = data.issuePhoto;
+        let base64Data = bufferData.toString('base64');
+        let dataUrl = 'data:image/jpg;base64,' + base64Data;
+
+        console.log("Data URL: ", dataUrl);
+        dataForm1.dataForm.issuePhoto = dataUrl;
     }
         data.title21 = "Edit Issue";
         res.render('addIssue', dataForm1);
@@ -152,12 +181,26 @@ app.get('/loginUser',async  function (req,res) {
 
 });
 
-app.get('/submitIssue', async  function (req,res) {
-    let issueData = req.query;
 
-    await Model.insertIssue(issueData).then(r => res.redirect('home/?user=' + issueData.issueUser));
+app.post('/submitIssue', async  function (req,res) {
+    // data
+    console.log("Submitting issue. .....");
+    console.log(req.body);
 
-})
+    let photoData = req.files.issuePhoto;
+
+    if(photoData !== undefined)
+    {
+        const buffer = photoData.data;
+        req.body.issuePhoto =  buffer;
+    }
+    else{
+        req.body.issuePhoto = null;
+    }
+    await Model.insertIssue(req.body).then(r => res.redirect('home/?user=' + req.body.issueUser));
+
+});
+
 app.get('/updateIssue', async  function (req,res) {
     let issueDataForm = req.query;
 
@@ -210,7 +253,7 @@ app.get('/registerTheUser',async function (req, res) {
 
         }
     }
-    //res.send("Registration successful");
+
 });
 
 app.get("/background_landingPage.jpg", function (req,res){
@@ -226,6 +269,8 @@ app.get('/registerIssue',function (req,res) {
     const data = {
         userId: req.query.user,
         addIssue: true,
+        edit:false,
+        title21:'Add the issue'
     }
     res.render('addIssue',data );
 });
