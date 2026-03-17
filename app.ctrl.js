@@ -410,6 +410,12 @@ app.get('/skyline.jpg', function (req,res){
 app.get('/script.js',function (req,res){
     res.sendFile(__dirname + '/script.js');
 });
+app.get('/responsive.css',function (req,res){
+    res.sendFile(__dirname + '/views/responsive.css');
+});
+app.get('/home/responsiveHome.css',function (req,res){
+    res.sendFile(__dirname + '/views/responsiveHome.css');
+});
 app.get('/output.css',function (req,res){
 
    res.sendFile(__dirname + '/views/output.css');

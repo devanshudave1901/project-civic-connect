@@ -1,0 +1,340 @@
+body{
+    background: steelblue;
+
+
+    height:fit-content;
+}
+#issueTable{
+    background: white;
+    padding: 20px;
+
+    border: lightslategray 1px solid;
+    border-radius: 20px !important;
+}
+.card {
+
+    border-radius: 50px;
+    background: white;
+    /*box-shadow: 10px 10px 10px #bebebe,*/
+    /*-20px -20px 60px #ffffff;*/
+    /* adding my own design to make it appropriate for my page and bootstrap classes that I feel is appropriate */
+    padding: 50px;
+    width:115em !important;
+    height: 45em !important;
+}
+#appTitle{
+    color: whitesmoke ;
+
+
+}
+
+@media (max-width: 768px) {
+    #issueTable {
+        overflow-x: auto;
+    }
+}
+@media (max-width: 480px) {
+    #issueTable {
+        overflow-x: auto;
+    }
+}
+@media (max-width: 360px) {
+    #issueTable {
+        overflow-x: auto;
+    }
+}
+@media (max-width: 320px) {
+    #issueTable {
+        overflow-x: auto;
+    }
+}
+@media (max-width: 280px) {
+    #issueTable {
+        overflow-x: auto;
+    }
+}
+@media (max-width: 240px) {
+    #issueTable {
+        overflow-x: auto;
+    }
+}
+@media (max-width: 200px) {
+    #issueTable {
+        overflow-x: auto;
+    }
+}
+@media (max-width: 160px) {
+    #issueTable {
+        overflow-x: auto;
+    }
+}
+@media (max-width: 120px) {
+    #issueTable {
+        overflow-x: auto;
+    }
+}
+@media (max-width: 80px) {
+    #issueTable {
+        overflow-x: auto;
+    }
+}
+@media (max-width: 40px) {
+    #issueTable {
+        overflow-x: auto;
+    }
+}
+@media (max-width: 20px) {
+    #issueTable {
+        overflow-x: auto;
+    }
+}
+
+
+/*applying media queries to table, title, buttons*/
+
+
+@media (max-width: 768px) {
+    table {
+        width: 100%;
+        font-size: 0.8rem;
+    }
+
+    table th, table td {
+        padding: 8px;
+    }
+
+    #appTitle {
+        font-size: 2.5rem;
+    }
+    button {
+        font-size: 1.2rem;
+        padding: 15px 30px;
+    }
+    #issueTable {
+        width: 100%;
+        padding: 10px;
+    }
+
+
+}
+@media (max-width: 480px) {
+    table {
+        width: 100%;
+        font-size: 0.6rem;
+    }
+        table th, table td {
+            padding: 5px;
+        }
+    #appTitle {
+        font-size: 2rem;
+    }
+    button {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+    #issueTable {
+        width: 100%;
+        padding: 5px;
+    }
+}
+@media (max-width: 360px) {
+    table {
+        width: 100%;
+        font-size: 0.5rem;
+    }
+        table th, table td {
+                padding: 5px;
+            }
+    #appTitle {
+        font-size: 1.5rem;
+    }
+    button {
+        font-size: 0.8rem;
+        padding: 8px 16px;
+    }
+    #issueTable {
+        width: 100%;
+        padding: 5px;
+    }
+}
+@media (max-width: 320px) {
+    table {
+        width: 100%;
+        font-size: 0.4rem;
+    }
+        table th, table td {
+                padding: 5px;
+            }
+    #appTitle {
+        font-size: 1.2rem;
+    }
+    button {
+        font-size: 0.6rem;
+        padding: 5px 10px;
+    }
+    #issueTable {
+        width: 100%;
+        padding: 5px;
+    }
+}
+@media (max-width: 280px) {
+    table {
+        width: 100%;
+        font-size: 0.3rem;
+    }
+        table th, table td {
+                padding: 5px;
+            }
+    #appTitle {
+        font-size: 1rem;
+    }
+    button {
+        font-size: 0.5rem;
+        padding: 4px 8px;
+    }
+    #issueTable {
+        width: 100%;
+        padding: 5px;
+    }
+}
+@media (max-width: 240px) {
+    table {
+        width: 100%;
+        font-size: 0.2rem;
+    }
+    table th, table td {
+        padding: 5px;
+    }
+    #appTitle {
+        font-size: 0.8rem;
+    }
+
+    button {
+        font-size: 0.4rem;
+        padding: 3px 6px;
+    }
+    #issueTable {
+        width: 100%;
+        padding: 5px;
+    }
+}
+@media (max-width: 200px) {
+    table {
+        width: 100%;
+        font-size: 0.1rem;
+    }
+    table th, table td {
+        padding: 5px;
+    }
+    #appTitle {
+        font-size: 0.6rem;
+    }
+    button {
+        font-size: 0.3rem;
+        padding: 2px 4px;
+    }
+    #issueTable {
+        width: 100%;
+        padding: 5px;
+    }
+}
+@media (max-width: 160px) {
+    table {
+        width: 100%;
+        font-size: 0.05rem;
+    }
+    table th, table td {
+        padding: 5px;
+    }
+    #appTitle {
+        font-size: 0.4rem;
+    }
+    button {
+        font-size: 0.2rem;
+        padding: 1px 2px;
+    }
+    #issueTable {
+        width: 100%;
+        padding: 5px;
+    }
+}
+@media (max-width: 120px) {
+    table {
+        width: 100%;
+        font-size: 0.01rem;
+    }
+    table th, table td {
+        padding: 5px;
+    }
+    #appTitle {
+        font-size: 0.2rem;
+    }
+    button {
+        font-size: 0.1rem;
+        padding: 1px 2px;
+    }
+    #issueTable {
+        width: 100%;
+        padding: 5px;
+    }
+}
+@media (max-width: 80px) {
+    table {
+        width: 100%;
+        font-size: 0.005rem;
+    }
+    table th, table td {
+        padding: 5px;
+    }
+    #appTitle {
+        font-size: 0.1rem;
+    }
+    button {
+        font-size: 0.05rem;
+        padding: 1px 2px;
+    }
+    #issueTable {
+        width: 100%;
+        padding: 5px;
+    }
+}
+@media (max-width: 40px) {
+    table {
+        width: 100%;
+        font-size: 0.001rem;
+    }
+    table th, table td {
+        padding: 5px;
+    }
+    #appTitle {
+        font-size: 0.05rem;
+    }
+    button {
+        font-size: 0.01rem;
+        padding: 1px 2px;
+    }
+    #issueTable {
+        width: 100%;
+        padding: 5px;
+    }
+}
+@media (max-width: 20px) {
+    table {
+        width: 100%;
+        font-size: 0.0005rem;
+    }
+    table th, table td {
+        padding: 5px;
+    }
+    #appTitle {
+        font-size: 0.01rem;
+    }
+    button {
+        font-size: 0.005rem;
+        padding: 1px 2px;
+    }
+    #issueTable {
+        width: 100%;
+        padding: 5px;
+    }
+}

@@ -1,0 +1,167 @@
+body{
+    background: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+/* From Uiverse.io by Codewithvinay */
+.card {
+
+    border-radius: 50px;
+    background: #e0e0e0;
+    box-shadow: 20px 20px 60px #bebebe,
+    -20px -20px 60px #ffffff;
+    /* adding my own design to make it appropriate for my page and bootstrap classes that I feel is appropriate */
+    padding: 50px;
+    width: 30%;
+    height: 70%;
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 80%;
+        height: auto;
+        padding: 20px;
+    }
+    /*updating content inside the card to prevent them to leak */
+    .card h1 {
+        font-size: 2.5rem;
+    }
+    .card p {
+        font-size: 1.2rem;
+    }
+    .card a {
+        font-size: 1.2rem;
+    }
+    .card img {
+        width: 100%;
+        height: auto;
+    }
+    .card button {
+        font-size: 1.2rem;
+        padding: 15px 30px;
+    }
+    .card input {
+        font-size: 1.2rem;
+        padding: 15px;
+    }
+
+}
+@media (max-width: 480px) {
+    .card {
+        width: 100%;
+        height: auto;
+        padding: 10px;
+    }
+    /*updating content inside the card to prevent them to leak */
+    .card h1 {
+        font-size: 2rem;
+    }
+    .card p {
+        font-size: 1rem;
+    }
+    .card a {
+        font-size: 1rem;
+    }
+    .card img {
+        width: 100%;
+        height: auto;
+    }
+    .card button {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+    .card input {
+        font-size: 1rem;
+        padding: 10px;
+    }
+}
+@media (max-width: 320px) {
+    .card {
+        width: 100%;
+        height: auto;
+        padding: 5px;
+    }
+    /*updating content inside the card to prevent them to leak */
+    .card h1 {
+        font-size: 1.8rem;
+    }
+    .card p {
+        font-size: 0.9rem;
+    }
+    .card a {
+        font-size: 0.9rem;
+    }
+    .card img {
+        width: 100%;
+        height: auto;
+    }
+    .card button {
+        font-size: 0.9rem;
+        padding: 7px 15px;
+    }
+    .card input {
+        font-size: 0.9rem;
+        padding: 7px;
+    }
+}
+@media (max-width: 240px) {
+    .card {
+        width: 100%;
+        height: auto;
+        padding: 2px;
+    }
+    /*updating content inside the card to prevent them to leak */
+    .card h1 {
+        font-size: 1.6rem;
+    }
+    .card p {
+        font-size: 0.85rem;
+    }
+    .card a {
+        font-size: 0.85rem;
+    }
+    .card img {
+        width: 100%;
+        height: auto;
+    }
+    .card button {
+        font-size: 0.85rem;
+        padding: 5px 10px;
+    }
+    .card input {
+        font-size: 0.85rem;
+        padding: 5px;
+    }
+
+}
+@media (max-width: 120px) {
+    .card {
+        width: 100%;
+        height: auto;
+        padding: 1px;
+    }
+    /*updating content inside the card to prevent them to leak */
+    .card h1 {
+        font-size: 1.5rem;
+    }
+    .card p {
+        font-size: 0.8rem;
+    }
+    .card a {
+        font-size: 0.8rem;
+    }
+    .card img {
+        width: 100%;
+        height: auto;
+    }
+    .card button {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+    .card input {
+        font-size: 0.8rem;
+        padding: 5px;
+    }
+}
