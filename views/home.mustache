@@ -43,7 +43,10 @@
 <body>
 <div class="d-flex justify-content-between align-items-center gap-2 pe-5 mt-3">
     <h1 id="appTitle" class="mb-0 text-5xl flex-grow-1 font-bold text-center">Dashboard</h1>
-    <button type="submit" id="addIssueButton" class="btn btn-primary d-inline-block  me-5">Add Issue</button>
+    {{#superAdmin}}
+        <button type="submit" id="addIssueButton" class="btn btn-primary d-inline-block  me-5">Add Issue</button>
+
+        {{/superAdmin}}
     <button type="submit" id="logOutButton" class="btn btn-dark d-inline-block  me-5">Log Out</button>
 
 </div>
@@ -68,7 +71,7 @@
                 <tbody>
                  {{#tableData}}
                          <tr>
-                             <td><a href="/view/{{id}}">{{id}}</a></td>
+                             <td><a href="/view/{{id}}?deptType={{deptType}}">{{id}}</a></td>
                              <td>{{ categoryName}}</td>
 
                              <td>{{issueTitle}}</td>
@@ -85,11 +88,16 @@
 
     </div>
 <script>
+    let logOutButton = document.getElementById('logOutButton');
+    logOutButton.addEventListener('click', function() {
+        window.location.href = '/login';
+    });
     let addIssueButton = document.getElementById('addIssueButton');
 
     addIssueButton.addEventListener('click', function() {
         window.location.href = '/registerIssue?user={{userId}}';
     });
+
 </script>
 </body>
 </html>

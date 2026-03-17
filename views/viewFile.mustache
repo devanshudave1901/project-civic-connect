@@ -456,9 +456,12 @@ in project document-->
 
 
                             </select>
-                            <button class="btn btn-primary mt-3 w-100" id="changeStatusButton">
-                                Change Status
-                            </button>
+
+                                <button class="btn btn-primary mt-3 w-100" id="changeStatusButton">
+                                    Change Status
+                                </button>
+
+
                             <button class="btn btn-secondary mt-3 w-100" id="cancelButton">
                                 Cancel
                             </button>
@@ -471,7 +474,7 @@ in project document-->
 
                         <!--                    </div>-->
                         <div class="stepper-controls d-flex align-items-center justify-content-center">
-
+                    {{#noButtons}}
                             <button id="stats" type="submit" class="stepper-button stepper-button-primary test ">
                                 Change Status
                                 <!--                            <svg-->
@@ -488,6 +491,7 @@ in project document-->
                                 <!--                                ></path>-->
                                 <!--                            </svg>-->
                             </button>
+                    {{/noButtons}}
                         </div>
                     </div>
 
@@ -538,18 +542,21 @@ in project document-->
                                         <span>Relevant Department Informed</span>
                                     </li>
                                 </ul>
+                                {{#editButton}}
                                 <div class="action mt-5">
                                     <a id="edit" class="button" href="#">
                                         Edit the Issue
                                     </a>
 
                                 </div>
+
                                 <div class="action mt-4">
                                     <a id="delete" class="button" href="#">
                                         Delete
                                     </a>
 
                                 </div>
+                                {{/editButton}}
                             </div>
                         </div>
 

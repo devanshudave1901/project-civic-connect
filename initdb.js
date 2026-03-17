@@ -15,18 +15,41 @@ async function initdb() {
 
     await db.exec("Drop Table If exists IssueLog")
 
+
+
+    console.log("Database initialized")
+
+    await db.exec(`
+        CREATE TABLE IF NOT EXISTS IssueCategory (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            categoryName TEXT NOT NULL
+        )
+    `)
     await db.exec(`
         CREATE TABLE IF NOT EXISTS UserTypes (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             userTypeName TEXT NOT NULL
+            
         )
     `)
+    const issueCategoryStatement = await db.prepare("Insert into IssueCategory (categoryName) values (?)")
+    await issueCategoryStatement.run("Transit")
+    await issueCategoryStatement.run("Road")
+    await issueCategoryStatement.run("Waste")
+    await issueCategoryStatement.run("Water")
+    await issueCategoryStatement.run("Electricity")
+    await issueCategoryStatement.run("Parking")
+
     const userTypeStatement = await db.prepare("Insert into UserTypes (userTypeName) values (?)")
     await userTypeStatement.run("Admin")
     await userTypeStatement.run("Citizen")
     await userTypeStatement.run("Department Official")
-
-    console.log("Database initialized")
+    await  db.exec(`
+        CREATE TABLE IF NOT EXISTS IssueStatus (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            statusName TEXT NOT NULL
+        )
+    `)
     const result1 = await db.all("Select * from UserTypes")
 
     console.log(result1)
@@ -40,36 +63,18 @@ async function initdb() {
             username TEXT NOT NULL,
             password TEXT NOT NULL,
             userTypeId INTEGER NOT NULL,
+            userDeptType INT NULL,
+            Foreign Key (userDeptType) References IssueCategory(id)
             Foreign Key (userTypeId) References userTypes(id)
         )
     `)
 
-    await db.exec(`
-        CREATE TABLE IF NOT EXISTS IssueCategory (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            categoryName TEXT NOT NULL
-        )
-    `)
-
-    await  db.exec(`
-        CREATE TABLE IF NOT EXISTS IssueStatus (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            statusName TEXT NOT NULL
-        )
-    `)
     const issueStatusStatement = await db.prepare("Insert into IssueStatus (statusName) values (?)")
     await issueStatusStatement.run("Open")
     await issueStatusStatement.run("In Progress")
     await issueStatusStatement.run("Closed")
 
 
-    const issueCategoryStatement = await db.prepare("Insert into IssueCategory (categoryName) values (?)")
-    await issueCategoryStatement.run("Transit")
-    await issueCategoryStatement.run("Road")
-    await issueCategoryStatement.run("Waste")
-    await issueCategoryStatement.run("Water")
-    await issueCategoryStatement.run("Electricity")
-    await issueCategoryStatement.run("Parking")
 
     await  db.exec(`   
         CREATE TABLE IF NOT EXISTS IssueLog (

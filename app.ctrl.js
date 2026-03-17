@@ -25,6 +25,7 @@ app.get('/',function (req,res){
 });
 app.get('/view/:id',async function (req, res) {
     let issueId = req.params.id;
+    let deptType = req.query.deptType;
     let data = await Model.getIssueById(issueId);
      let comments = await Model.getCommentsByIssueId(issueId);
      // loop through the comments and save the list of comments in data.comments
@@ -34,7 +35,17 @@ app.get('/view/:id',async function (req, res) {
         });
 
     let statusDataReturned = data.statusName;
+    console.log("Status data returned: " + deptType);
+    if(deptType === "null" || deptType === null || deptType === undefined || deptType !== "")
+    {
+        data.noButtons = true;
+        data.editButton = false;
 
+    }
+    else{
+        data.noButtons = false;
+        data.editButton = true;
+    }
     if(statusDataReturned === 'Open')
     {
           data.statusOpen = true;
@@ -139,13 +150,36 @@ app.get('/edit/:id',async function (req,res) {
 app.get('/home',async function (req, res) {
 
     console.log("User ID from query parameter: " + req.query.user);
-    let tableData = await Model.getAllIssues(req.query);
+    console.log("User ID from query parameter: " + req.query.deptType);
+
+    let user = req.query.user;
+    let tableData;
+    if(req.query.deptType !== undefined)
+    {
+        console.log("inside get all issues by type");
+         tableData = await Model.getAllIssuesByType(req.query);
+
+    }
+    else{
+         tableData = await Model.getAllIssues(req.query);
+    }
     let data = {
         title1: "Home Page",
         userId: req.query.user,
         tableData: []
 
     }
+    console.log("Department type from query parameter: " + req.query.deptType);
+    if(req.query.deptType === undefined)
+    {
+        data.superAdmin = true;
+
+    }
+    else
+    {
+        data.superAdmin = false;
+    }
+    data.deptType= req.query.deptType;
     tableData.forEach(function (r) {
         console.log(r);
         data.tableData.push(r);
@@ -196,11 +230,38 @@ app.get('/loginUser',async  function (req,res) {
         else
         {
             var userDetails = await Model.loginUserDetails(req.query);
+            console.log("user details: " + userDetails[0]);
             var data = {
                 user: userDetails
             }
+            let userDepartmentType = userDetails[0].userDeptType;
+            let userType = userDetails[0].userTypeId;
 
-            res.redirect(`home/?user=${userDetails[0].id}`);
+            // if user type = 1 then straight to home page with all the data from all the departments
+            if(userType === 1)
+            {
+                console.log("Inside 1")
+
+                // sending the usertype of admin to see all the data from all the departments in the home page
+                res.redirect(`home/?user=${userDetails[0].id}&deptType=all`);
+            }
+            // else if user type is not 1 and departmenttype is not null then to home page with the data of the relevant department
+            else if(userDepartmentType !== "null" && userDepartmentType !== null)
+            {
+                console.log("Inside 2")
+
+                // sending the usertype of transit, roads to see all the data from relevant department in the home page
+                res.redirect(`home/?user=${userDetails[0].id}&deptType=${userDepartmentType}`);
+            }
+            else
+            {
+                console.log("Inside3")
+
+                console.log("Wnt to null")
+                res.redirect(`home/?user=${userDetails[0].id}`);
+            }
+
+
         }
     }
 
@@ -274,6 +335,47 @@ app.get('/registerTheUser',async function (req, res) {
                 login: true,
                 register: false,
                 accountCreated : true
+            }
+            let userEmail = regData.userEmailAddress;
+
+            console.log("user email: " + userEmail);
+
+            // based on userEmailAddress domain decide the level of the usertype
+            if(userEmail.endsWith("@transit.com")){
+                console.log("User is transit department");
+                regData.userDeptType = 1;
+                regData.userTypeId =3;
+            }
+            else if(userEmail.endsWith("@roads.com")){
+                console.log("User is roads department");
+
+                regData.userDeptType = 2;
+                regData.userTypeId =3;
+            }
+            else if(userEmail.endsWith("@waste.com")){
+                regData.userDeptType = 3;
+                regData.userTypeId =3;
+            }
+            else if(userEmail.endsWith("@water.com")){
+                regData.userDeptType = 4;
+                regData.userTypeId =3;
+            }
+            else if(userEmail.endsWith("@electricity.com")){
+                regData.userDeptType = 5;
+                regData.userTypeId =3;
+            }
+            else if(userEmail.endsWith("@parking.com")){
+                regData.userDeptType = 6;
+                regData.userTypeId =3;
+            }
+            else if(userEmail.endsWith("@admin.ca")){
+                regData.userDeptType = null;
+                regData.userTypeId =1;
+            }
+            else{
+                regData.userDeptType = null;
+                regData.userTypeId = 2;
+
             }
           await  Model.registerTheUser(regData).then(r => res.render('account',data));
 

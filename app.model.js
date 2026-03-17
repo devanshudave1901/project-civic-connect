@@ -40,6 +40,24 @@ async function getAllIssues(user1){
     const results = await dataBase.all("Select IssueLog.id, IssueLog.IssueCategoryId, IssueLog.issueTitle,IssueLog.issueDescription ,IssueLog.issueCreatedDate,IssueLog.issueUpdatedDate,IssueLog.isDeleted, IssueCategory.categoryName, IssueStatus.statusName from IssueLog INNER JOIN IssueCategory ON IssueLog.issueCategoryId = IssueCategory.id INNER JOIN IssueStatus ON IssueLog.issueStatusId = IssueStatus.id where IssueLog.isDeleted = 0 and issueUserId = ?", [user1.user])
     return results
 }
+
+async function getAllIssuesByType(user){
+    console.log(user.user);
+    console.log(user.deptType);
+
+    let deptType = user.deptType;
+    let userId = user.user;
+    if(deptType === "all")
+    {
+        const results = await dataBase.all("Select IssueLog.id, IssueLog.IssueCategoryId, IssueLog.issueTitle,IssueLog.issueDescription ,IssueLog.issueCreatedDate,IssueLog.issueUpdatedDate,IssueLog.isDeleted, IssueCategory.categoryName, IssueStatus.statusName from IssueLog INNER JOIN IssueCategory ON IssueLog.issueCategoryId = IssueCategory.id INNER JOIN IssueStatus ON IssueLog.issueStatusId = IssueStatus.id where IssueLog.isDeleted = 0")
+        return results
+    }
+    else{
+        // qyery as per department type
+        const results = await dataBase.all("Select IssueLog.id, IssueLog.IssueCategoryId, IssueLog.issueTitle,IssueLog.issueDescription ,IssueLog.issueCreatedDate,IssueLog.issueUpdatedDate,IssueLog.isDeleted, IssueCategory.categoryName, IssueStatus.statusName from IssueLog INNER JOIN IssueCategory ON IssueLog.issueCategoryId = IssueCategory.id INNER JOIN IssueStatus ON IssueLog.issueStatusId = IssueStatus.id where IssueLog.isDeleted = 0 and issueCategoryId = ? ", [deptType]);
+        return results
+    }
+}
 async  function changeStatus(status){
   let id = status.issueId;
   let statusId = status.issueChangeStatus;
@@ -93,10 +111,11 @@ async function registerTheUser(register)
     let phoneNumber = register.userPhoneNumber;
     let username = register.userName;
     let password = register.userPassword;
-    let userTypeId = 2;
+    let userTypeId = register.userTypeId;
+    let userDeptType = register.userDeptType;
 
-    await dataBase.run("Insert into Users (firstName, lastName, email, phoneNumber, username, password, userTypeId) values (?, ?, ?, ?, ?, ?, ?)",
-        [firstName, lastName, email, phoneNumber, username, password, userTypeId]);
+    await dataBase.run("Insert into Users (firstName, lastName, email, phoneNumber, username, password, userTypeId,userDeptType) values (?, ?, ?, ?, ?, ?, ?,?)",
+        [firstName, lastName, email, phoneNumber, username, password, userTypeId,userDeptType]);
 
     console.log("User registered successfully");
 }
@@ -155,4 +174,4 @@ async function checkEmailForRegister(register)
     return results
 }
 
-module.exports = {dataBaseConnection,changeStatus,addComment,updateIssue,getCommentsByIssueId, getLogin,checkEmailForRegister,registerTheUser,insertIssue,getAllIssues,getIssueById,deleteIssue,loginUserDetails}
+module.exports = {dataBaseConnection,changeStatus,getAllIssuesByType,addComment,updateIssue,getCommentsByIssueId, getLogin,checkEmailForRegister,registerTheUser,insertIssue,getAllIssues,getIssueById,deleteIssue,loginUserDetails}
