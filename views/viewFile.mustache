@@ -9,12 +9,15 @@ in project document-->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./style.css">
     <title>View Issue</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"></script>
 
 </head>
 <style>
-    body{
+    body {
         display: block;
         justify-content: center;
         align-items: center;
@@ -22,6 +25,7 @@ in project document-->
         height: 100vh;
         overflow: auto;
     }
+
     /* From Uiverse.io by Codewithvinay - design from this website */
     .card {
         border-radius: 20px;
@@ -29,9 +33,10 @@ in project document-->
         /*box-shadow: 20px 20px 60px #bebebe,*/
         /*-20px -20px 60px #ffffff;*/
         /* adding my own design to make it appropriate for my page and bootstrap classes that I feel is appropriate */
-        padding:30px;
+        padding: 30px;
 
     }
+
     /* From Uiverse.io by PriyanshuGupta28  - design from this website--> */
     .stepper-box {
         background-color: white;
@@ -163,6 +168,7 @@ in project document-->
         color: white;
         border-color: #0f172a;
     }
+
     /* From Uiverse.io by Yaya12085 */
     .plan {
         border-radius: 16px;
@@ -285,57 +291,57 @@ in project document-->
 
 <div class="containerCard">
     <h2 class="d-flex  justify-content-center text-white font-italic font-weight-bold"> Issue Details </h2>
-<div class=" container vh-auto m-auto  d-flex align-items-start mt-5 justify-content-center">
-    <div class="row g-3 h-75">
-        <div class="col ">
-            <div class="card-body h-100 ">
-                <!-- Design Reference - From Uiverse.io by PriyanshuGupta28 - design from this website-->
-                <div class="stepper-box align-content-center h-100 p-3">
-                    <div class="stepper-step stepper-completed justify-content-center">
-                        <div class="stepper-circle">
-                            <svg
-                                    viewBox="0 0 16 16"
-                                    class="bi bi-check-lg"
-                                    fill="currentColor"
-                                    height="16"
-                                    width="16"
-                                    xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                        d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"
-                                ></path>
-                            </svg>
-                        </div>
+    <div class=" container vh-auto m-auto  d-flex align-items-start mt-5 justify-content-center">
+        <div class="row g-3 h-75">
+            <div class="col ">
+                <div class="card-body h-100 ">
+                    <!-- Design Reference - From Uiverse.io by PriyanshuGupta28 - design from this website-->
+                    <div class="stepper-box align-content-center h-100 p-3">
+                        <div class="stepper-step stepper-completed justify-content-center">
+                            <div class="stepper-circle">
+                                <svg
+                                        viewBox="0 0 16 16"
+                                        class="bi bi-check-lg"
+                                        fill="currentColor"
+                                        height="16"
+                                        width="16"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                            d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"
+                                    ></path>
+                                </svg>
+                            </div>
 
                             <div class="stepper-line"></div>
 
-                        <div class="stepper-content">
-                            <div class="stepper-title">Open</div>
-                            <div class="stepper-status">Completed</div>
+                            <div class="stepper-content">
+                                <div class="stepper-title">Open</div>
+                                <div class="stepper-status">Completed</div>
+                            </div>
+
                         </div>
+                        {{#dataSubmitted}}
 
-                    </div>
-                    {{#dataSubmitted}}
-
-                    <div class="stepper-step stepper-pending ">
-                    {{/dataSubmitted}}
-                    {{#proccesingPending}}
+                        <div class="stepper-step stepper-pending ">
+                        {{/dataSubmitted}}
+                        {{#proccesingPending}}
 
                         <div class="stepper-step stepper-active ">
-                     {{/proccesingPending}}
-                    {{#openedData}}
+                        {{/proccesingPending}}
+                        {{#openedData}}
 
-                    {{/openedData}}
+                        {{/openedData}}
 
-                    {{#statusProcessing}}
+                        {{#statusProcessing}}
 
-                    <div class="stepper-step stepper-completed justify-content-center">
+                        <div class="stepper-step stepper-completed justify-content-center">
 
-                    {{/statusProcessing}}
-                    <div class="stepper-circle">
+                        {{/statusProcessing}}
+                        <div class="stepper-circle">
 
 
-                        {{#statusProcessingTick}}
+                            {{#statusProcessingTick}}
 
                                 <svg
                                         viewBox="0 0 16 16"
@@ -350,60 +356,60 @@ in project document-->
                                     ></path>
                                 </svg>
 
-                        {{/statusProcessingTick}}
-                    </div>
-                    {{#dataSubmitted}}
-                        <div class="stepper-line" style="display: block"></div>
-
-                        <div class="stepper-content">
-                            <div class="stepper-title">Processing</div>
-
-                            <div class="stepper-status">In-Process</div>
+                            {{/statusProcessingTick}}
                         </div>
+                        {{#dataSubmitted}}
+                            <div class="stepper-line" style="display: block"></div>
+
+                            <div class="stepper-content">
+                                <div class="stepper-title">Processing</div>
+
+                                <div class="stepper-status">In-Process</div>
+                            </div>
                         {{/dataSubmitted}}
-                    {{#proccesingPending}}
-                        <div class="stepper-line" style="display: block"></div>
+                        {{#proccesingPending}}
+                            <div class="stepper-line" style="display: block"></div>
 
-                        <div class="stepper-content">
-                            <div class="stepper-title">Processing</div>
+                            <div class="stepper-content">
+                                <div class="stepper-title">Processing</div>
 
-                            <div class="stepper-status">In-Process</div>
-                        </div>
+                                <div class="stepper-status">In-Process</div>
+                            </div>
 
-                    {{/proccesingPending}}
+                        {{/proccesingPending}}
 
-                    {{#proccessingDone}}
-                        <div class="stepper-line" style="display: block"></div>
+                        {{#proccessingDone}}
+                            <div class="stepper-line" style="display: block"></div>
 
-                        <div class="stepper-content">
-                            <div class="stepper-title">Processing</div>
+                            <div class="stepper-content">
+                                <div class="stepper-title">Processing</div>
 
-                            <div class="stepper-status">Completed</div>
-                        </div>
+                                <div class="stepper-status">Completed</div>
+                            </div>
                         {{/proccessingDone}}
 
 
-                    {{#statusProcessingFalse}}
+                        {{#statusProcessingFalse}}
                         </div>
-                    {{/statusProcessingFalse}}
-                    {{#closed}}
-                    <div class="stepper-step stepper-completed">
+                        {{/statusProcessingFalse}}
+                        {{#closed}}
+                        <div class="stepper-step stepper-completed">
 
-                    {{/closed}}
-                    {{#dataSubmitted}}
-                    </div>
+                        {{/closed}}
+                        {{#dataSubmitted}}
+                        </div>
 
-                    <div class="stepper-step stepper-pending">
-
-                    {{/dataSubmitted}}
-                    {{#proccesingPending}}
-                    </div>
                         <div class="stepper-step stepper-pending">
 
-                    {{/proccesingPending}}
-                    <div class="stepper-circle">
+                        {{/dataSubmitted}}
+                        {{#proccesingPending}}
+                        </div>
+                        <div class="stepper-step stepper-pending">
 
-                        {{#closed}}
+                        {{/proccesingPending}}
+                        <div class="stepper-circle">
+
+                            {{#closed}}
                                 <svg
                                         viewBox="0 0 16 16"
                                         class="bi bi-check-lg"
@@ -417,193 +423,168 @@ in project document-->
                                     ></path>
                                 </svg>
 
+                            {{/closed}}
+                        </div>
+                        {{#closed}}
+                            <div class="stepper-content">
+                                <div class="stepper-title">Closed</div>
+                                <div class="stepper-status">Completed</div>
+                            </div>
                         {{/closed}}
-                    </div>
-                    {{#closed}}
-                        <div class="stepper-content">
-                            <div class="stepper-title">Closed</div>
-                            <div class="stepper-status">Completed</div>
-                        </div>
-                        {{/closed}}
-                    {{#dataSubmitted}}
-                        <div class="stepper-content">
-                            <div class="stepper-title">Closed</div>
-                            <div class="stepper-status">Pending</div>
-                        </div>
-                    {{/dataSubmitted}}
-                    {{#proccesingPending}}
-                        <div class="stepper-content">
-                            <div class="stepper-title">Closed</div>
-                            <div class="stepper-status">Pending</div>
-                        </div>
+                        {{#dataSubmitted}}
+                            <div class="stepper-content">
+                                <div class="stepper-title">Closed</div>
+                                <div class="stepper-status">Pending</div>
+                            </div>
+                        {{/dataSubmitted}}
+                        {{#proccesingPending}}
+                            <div class="stepper-content">
+                                <div class="stepper-title">Closed</div>
+                                <div class="stepper-status">Pending</div>
+                            </div>
                         {{/proccesingPending}}
                     </div>
 
-                    <form id="statusChangeSection" class="w-100" action="/changeStatus" hidden="hidden">
-                        <label for="issueId" class="form-label hidden" hidden="hidden">Id</label>
-                        <input type="text" class="hidden" id="issueId" name="issueId" value="{{id}}" hidden>
-                        <label for="issueChangeStatus" class="form-label">Status Options</label>
-                        <select class="form-select" name="issueChangeStatus" aria-label="issueChangeStatus">
-                            <option selected>Select Status</option>
-                            <option value="2">Processing</option>
-                            <option value="3">Closed</option>
+                        <form id="statusChangeSection" class="w-100" action="/changeStatus" hidden="hidden">
+                            <label for="issueId" class="form-label hidden" hidden="hidden">Id</label>
+                            <input type="text" class="hidden" id="issueId" name="issueId" value="{{id}}" hidden>
+                            <label for="issueChangeStatus" class="form-label">Status Options</label>
+                            <select class="form-select" name="issueChangeStatus" aria-label="issueChangeStatus">
+                                <option selected>Select Status</option>
+                                <option value="2">Processing</option>
+                                <option value="3">Closed</option>
 
 
-                        </select>
-                        <button class="btn btn-primary mt-3 w-100" id="changeStatusButton">
-                            Change Status
-                        </button>
-                        <button class="btn btn-secondary mt-3 w-100" id="cancelButton">
-                            Cancel
-                        </button>
-                    </form>
-<!--                    <button type="submit"  class="btn btn-primary d-inline-block  me-5">Edit</button>-->
-<!--                    <div class="action mt-5">-->
-<!--                        <a id="stats" class="button" href="#">-->
-<!--                            Edit the Issue-->
-<!--                        </a>-->
+                            </select>
+                            <button class="btn btn-primary mt-3 w-100" id="changeStatusButton">
+                                Change Status
+                            </button>
+                            <button class="btn btn-secondary mt-3 w-100" id="cancelButton">
+                                Cancel
+                            </button>
+                        </form>
+                        <!--                    <button type="submit"  class="btn btn-primary d-inline-block  me-5">Edit</button>-->
+                        <!--                    <div class="action mt-5">-->
+                        <!--                        <a id="stats" class="button" href="#">-->
+                        <!--                            Edit the Issue-->
+                        <!--                        </a>-->
 
-<!--                    </div>-->
-                    <div class="stepper-controls d-flex align-items-center justify-content-center">
+                        <!--                    </div>-->
+                        <div class="stepper-controls d-flex align-items-center justify-content-center">
 
-                        <button id="stats"  type="submit" class="stepper-button stepper-button-primary test ">
-                            Change Status
-<!--                            <svg-->
-<!--                                    xmlns="http://www.w3.org/2000/svg"-->
-<!--                                    width="16"-->
-<!--                                    height="16"-->
-<!--                                    fill="currentColor"-->
-<!--                                    class="bi bi-arrow-right"-->
-<!--                                    viewBox="0 0 16 16"-->
-<!--                            >-->
-<!--                                <path-->
-<!--                                        fill-rule="evenodd"-->
-<!--                                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"-->
-<!--                                ></path>-->
-<!--                            </svg>-->
-                        </button>
+                            <button id="stats" type="submit" class="stepper-button stepper-button-primary test ">
+                                Change Status
+                                <!--                            <svg-->
+                                <!--                                    xmlns="http://www.w3.org/2000/svg"-->
+                                <!--                                    width="16"-->
+                                <!--                                    height="16"-->
+                                <!--                                    fill="currentColor"-->
+                                <!--                                    class="bi bi-arrow-right"-->
+                                <!--                                    viewBox="0 0 16 16"-->
+                                <!--                            >-->
+                                <!--                                <path-->
+                                <!--                                        fill-rule="evenodd"-->
+                                <!--                                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"-->
+                                <!--                                ></path>-->
+                                <!--                            </svg>-->
+                            </button>
+                        </div>
                     </div>
-                </div>
 
-            </div>
-        </div>
-        <div class="col-5">
-            <!-- From Uiverse.io by Yaya12085 -->
-            <div class="plan h-100">
-                <div class="inner">
+                    </div>
+                    </div>
+                    <div class="col-5">
+                        <!-- From Uiverse.io by Yaya12085 -->
+                        <div class="plan h-100">
+                            <div class="inner">
 			<span class="pricing">
 				<span>
-					{{categoryName}}
-				</span>
+                    {{categoryName}}
+                </span>
 			</span>
-                    <p class="title">{{issueTitle}}</p>
-                    <p class="info">{{issueDescription}}</p>
-                    <img src="{{issuePhoto}}" alt="Issue Image" style="width: 150px; height: 100px" class="img-fluid rounded mb-3">
-                    <ul class="features">
-                        <li>
+                                <p class="title">{{issueTitle}}</p>
+                                <p class="info">{{issueDescription}}</p>
+                                <img src="{{issuePhoto}}" alt="Issue Image" style="width: 150px; height: 100px"
+                                     class="img-fluid rounded mb-3">
+                                <ul class="features">
+                                    <li>
 					<span class="icon">
 						<svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 							<path d="M0 0h24v24H0z" fill="none"></path>
-							<path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
+							<path fill="currentColor"
+                                  d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
 						</svg>
 					</span>
-                            <span>If the situation worsens, call 911</span>
-                        </li>
-                        <li>
+                                        <span>If the situation worsens, call 911</span>
+                                    </li>
+                                    <li>
 					<span class="icon">
 						<svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 							<path d="M0 0h24v24H0z" fill="none"></path>
-							<path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
+							<path fill="currentColor"
+                                  d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
 						</svg>
 					</span>
-                            <span>Issue Monitored<strong></strong></span>
-                        </li>
-                        <li>
+                                        <span>Issue Monitored<strong></strong></span>
+                                    </li>
+                                    <li>
 					<span class="icon">
 						<svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 							<path d="M0 0h24v24H0z" fill="none"></path>
-							<path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
+							<path fill="currentColor"
+                                  d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
 						</svg>
 					</span>
-                            <span>Relevant Department Informed</span>
-                        </li>
-                    </ul>
-                    <div class="action mt-5">
-                        <a id="edit" class="button" href="#">
-                           Edit the Issue
-                        </a>
+                                        <span>Relevant Department Informed</span>
+                                    </li>
+                                </ul>
+                                <div class="action mt-5">
+                                    <a id="edit" class="button" href="#">
+                                        Edit the Issue
+                                    </a>
+
+                                </div>
+                                <div class="action mt-4">
+                                    <a id="delete" class="button" href="#">
+                                        Delete
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+
 
                     </div>
-                    <div class="action mt-4">
-                        <a id="delete" class="button" href="#">
-                            Delete
-                        </a>
+                    <div class="col">
+
+
+                        <div class="d-flex align-items-center h-auto  card p-1" style="height:300px">
+                            <div class="card-header w-100">
+                                <h3 class="d-flex justify-content-center align-items-center">Comments</h3>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center w-100 ">
+                                <ol class="p-0 m-0">
+                                    {{#comments}}
+                                        <li class="card-text mb-3">
+                                            <p>{{.}}</p>
+                                        </li>
+                                    {{/comments}}
+                                </ol>
+                            </div>
+                            <div class="card-footer d-flex align-items-end justify-content-end w-100">
+                                <button id="addComment" class="btn btn-primary w-100">
+                                    Add Comment
+                                </button>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
+
             </div>
-<!--            <div class="card h-75 p-3">-->
-<!--                <h2 class="">{{issueTitle}}</h2>-->
-<!--                    <div class="card-body">-->
-
-<!--                        <p class="card-text">Description: {{issueDescription}}</p>-->
-<!--                        <p class="card-text">Category: {{ categoryName}}</p>-->
-<!--                        <p class="card-text">Created Date: {{issueCreatedDate}}</p>-->
-<!--                        <p class="card-text">Status: {{statusName}}</p>-->
-
-<!--                        <button type="submit" id="edit" class="btn btn-primary d-inline-block  me-5">Edit</button>-->
-
-<!--                        <button type="submit" id="delete" class="btn btn-primary d-inline-block  me-5">Delete</button>-->
-
-<!--                    </div>-->
-<!--            </div>-->
-
         </div>
-        <div class="col" >
 
-
-        <div class="d-flex align-items-center h-auto  card p-1" style="height:300px">
-                <div class="card-header w-100">
-                    <h3 class="">Comments</h3>
-                </div>
-                <div class=" d-flex align-items-center justify-content-center w-100 ">
-                    <ol>
-                       {{#comments}}
-                            <li class="card-text mb-3">
-                                <p>{{.}}</p>
-                            </li>
-                       {{/comments}}
-                    </ol>
-                </div>
-                <div class="card-footer d-flex align-items-end justify-content-end w-100">
-                    <button id="addComment" class="btn btn-primary w-100">
-                        Add Comment
-                    </button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-</div>
-</div>
-<!--<div class="card d-flex justify-content-center align-items-center mx-auto mt-5">-->
-<!--    <h2 class="">{{issueTitle}}</h2>-->
-<!--    <div class="card-body">-->
-
-<!--        <p class="card-text">Description: {{issueDescription}}</p>-->
-<!--        <p class="card-text">Category: {{ categoryName}}</p>-->
-<!--        <p class="card-text">Created Date: {{issueCreatedDate}}</p>-->
-<!--        <p class="card-text">Status: {{statusName}}</p>-->
-
-<!--        <button type="submit" id="edit" class="btn btn-primary d-inline-block  me-5">Edit</button>-->
-
-<!--        <button type="submit" id="delete" class="btn btn-primary d-inline-block  me-5">Delete</button>-->
-
-<!--    </div>-->
-
-<!--</div>-->
-<script>
+        <script>
     document.getElementById("stats").addEventListener("click", function ()
     {
        document.getElementById("statusChangeSection").hidden = false;
