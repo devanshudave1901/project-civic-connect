@@ -29,7 +29,7 @@
 
     {{/addIssue}}
     {{#edit}}
-    <form class="mt-5" action="/updateIssue">
+    <form class="mt-5" action="/updateIssue" >
         <input value="{{dataForm.id}}" name="issueId"  hidden="hidden"/>
     {{/edit}}
     <div class="container">
@@ -69,7 +69,7 @@
                        id="issuePhoto">
 <!--                <input id="issuePhotoBase64" name="issuePhotoBase64" type="text">-->
             </div>
-            <div class="col" hidden>
+            <div class="col">
                 <label for="issueUser" class="form-label">User</label>
                 <input type="text" name="issueUser" class="form-control" value="{{userId}}"
                        id="issueUser">

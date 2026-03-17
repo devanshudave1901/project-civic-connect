@@ -60,6 +60,7 @@ async function getAllIssuesByType(user){
 }
 async  function changeStatus(status){
   let id = status.issueId;
+
   let statusId = status.issueChangeStatus;
   const result = await dataBase.run("Update IssueLog Set issueStatusId = ? where id = ?", [statusId, id])
     return result;
@@ -79,20 +80,23 @@ async  function updateIssue(issue){
     console.log(issue);
     const now = new Date();
     console.log("Inside update issue function", issue.issueUser);
+
     let issueTitle = issue.issueTitle;
     let issueDescription = issue.issueDescription;
     let issueCategoryId =  parseInt(issue.issueCategory);
     let userId = issue.issueUser;
 
+
     let issueUpdatedDate  = now.toISOString();
     let isDeleted = 0;
     let issuePhoto = null;
-    if(issue.issueImage === undefined)
+    if(issue.issueImage === undefined || issue.issueImage === null || issue.issueImage === "")
     {
-        issue.issueImage = null;
+            issuePhoto = await dataBase.get("Select issuePhoto from IssueLog where id = ?", [issue.issueId]);
+
     }
     else{
-        issuePhoto = issue.issueImage;
+        issuePhoto = issue.issuePhoto;
     }
 
 

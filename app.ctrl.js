@@ -131,18 +131,22 @@ app.get('/edit/:id',async function (req,res) {
         dataForm: data,
        edit:true
     }
+    let userId1 = req.query.user;
+    console.log("User ID from query parameter in edit issue: " + userId1);
+    dataForm1.userId = userId1;
+
     console.log("Image " , data.issuePhoto);
     // changing the buffer data of the image to base64 string to be able to render it on the edit page
-    if(data.issuePhoto !== null)
-    {
-        // making the buffer in a way that it can be reuploaded to the input type file on the edit page
-        let bufferData = data.issuePhoto;
-        let base64Data = bufferData.toString('base64');
-        let dataUrl = 'data:image/jpg;base64,' + base64Data;
-
-        console.log("Data URL: ", dataUrl);
-        dataForm1.dataForm.issuePhoto = dataUrl;
-    }
+    // if(data.issuePhoto !== null)
+    // {
+    //     // making the buffer in a way that it can be reuploaded to the input type file on the edit page
+    //     let bufferData = data.issuePhoto;
+    //     let base64Data = bufferData.toString('base64');
+    //     let dataUrl = 'data:image/jpg;base64,' + base64Data;
+    //
+    //     console.log("Data URL: ", dataUrl);
+    //     dataForm1.dataForm.issuePhoto = dataUrl;
+    // }
         data.title21 = "Edit Issue";
         res.render('addIssue', dataForm1);
 
@@ -293,6 +297,7 @@ app.get('/updateIssue', async  function (req,res) {
 
     const result = await  Model.updateIssue(issueDataForm);
     console.log("Result from update issue: " + result);
+
     console.log(issueDataForm)
     res.redirect('view/' +issueDataForm.issueId);
 
@@ -413,9 +418,22 @@ app.get('/script.js',function (req,res){
 app.get('/responsive.css',function (req,res){
     res.sendFile(__dirname + '/views/responsive.css');
 });
+app.get('/view/responsiveView.css',function (req,res){
+    res.sendFile(__dirname + '/views/responsiveView.css');
+});
 app.get('/home/responsiveHome.css',function (req,res){
     res.sendFile(__dirname + '/views/responsiveHome.css');
 });
+app.get('/responsiveHome.css',function (req,res){
+    res.sendFile(__dirname + '/views/responsiveHome.css');
+});
+app.get('/addComment/:id/responsive.css',function (req,res){
+    res.sendFile(__dirname + '/views/responsive.css');
+});
+app.get('/edit/:id/responsive.css',function (req,res){
+    res.sendFile(__dirname + '/views/responsive.css');
+});
+
 app.get('/output.css',function (req,res){
 
    res.sendFile(__dirname + '/views/output.css');
