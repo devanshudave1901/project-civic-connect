@@ -11,6 +11,7 @@ async function initdb() {
     await db.exec("Drop Table If exists Users")
     await db.exec("Drop Table If exists IssueCategory")
     await db.exec("Drop Table If exists IssueStatus")
+    await db.exec("Drop Table If exists IssueComment")
 
     await db.exec("Drop Table If exists IssueLog")
 
@@ -89,6 +90,20 @@ async function initdb() {
         )
     `)
 
+    await  db.exec(`   
+        CREATE TABLE IF NOT EXISTS IssueComment (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            issueLogId INTEGER NOT NULL,
+            issueComment TEXT NOT NULL,
+            issueUserId INTEGER NOT NULL,
+            issueCreatedDate TEXT NOT NULL,
+            issueUpdatedDate TEXT NOT NULL,
+            isDeleted boolean NOT NULL,
+            Foreign Key (issueLogId) References IssueLog(id),
+            Foreign Key (issueUserId) References Users(id)
+            
+        )
+    `)
 
     const statement = await db.prepare("Insert into Users (firstName, lastName,email, phoneNumber,username, password,userTypeId) values (?,?, ?,?,?,?,?)")
     await statement.run("admin","admin","admin@city.ca","1234567894","admin", "admin123",1)

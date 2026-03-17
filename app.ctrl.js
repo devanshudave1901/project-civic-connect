@@ -26,8 +26,15 @@ app.get('/',function (req,res){
 app.get('/view/:id',async function (req, res) {
     let issueId = req.params.id;
     let data = await Model.getIssueById(issueId);
+     let comments = await Model.getCommentsByIssueId(issueId);
+     // loop through the comments and save the list of comments in data.comments
+        data.comments = [];
+        comments.forEach(function (r) {
+            data.comments.push(r.issueComment);
+        });
 
     let statusDataReturned = data.statusName;
+
     if(statusDataReturned === 'Open')
     {
           data.statusOpen = true;
@@ -82,6 +89,24 @@ app.get('/view/:id',async function (req, res) {
 
     res.render('viewFile', data);
 })
+app.get("/submitComment", async function (req,res) {
+   let data = req.query;
+   console.log("Submitting comment for issue id: " + data.issueId + " by user id: " + data.userId);
+   await Model.addComment(data).then(r => res.redirect('/view/' + data.issueId));
+});
+app.get('/addComment/:id', async function (req,res) {
+    let issueId = req.params.id;
+    let user = req.query.user;
+
+    let data = {
+        issueId: issueId,
+        user: user
+    }
+
+    console.log("Adding comment for issue id: " + issueId + " by user id: " + user);
+    res.render('addComment',data);
+
+});
 app.get('/delete/:id',function (req,res) {
     let issueId = req.params.id;
     Model.deleteIssue(issueId).then(r => res.redirect('/home?user=' + req.query.user));
@@ -197,6 +222,7 @@ app.post('/submitIssue', async  function (req,res) {
     else{
         req.body.issuePhoto = null;
     }
+
     await Model.insertIssue(req.body).then(r => res.redirect('home/?user=' + req.body.issueUser));
 
 });

@@ -112,10 +112,37 @@ async  function insertIssue(issue){
     let issueUpdatedDate  = now.toISOString();
     let isDeleted = 0;
     let issuePhoto = issue.issuePhoto;
-   await dataBase.run("Insert into IssueLog (issueTitle, issueDescription, issueCategoryId, issueUserId, issueStatusId, issueCreatedDate, issueUpdatedDate, isDeleted, issuePhoto) values (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-        [issueTitle, issueDescription, issueCategoryId, userId, issueStatusId, issueCreatedDate, issueUpdatedDate, isDeleted, issuePhoto]);
+    // RETURNING ISSUE ID
+    let issueId =  await dataBase.run("Insert into IssueLog (issueTitle, issueDescription, issueCategoryId, issueUserId, issueStatusId, issueCreatedDate, issueUpdatedDate, isDeleted, issuePhoto) values (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        [issueTitle, issueDescription, issueCategoryId, userId, issueStatusId, issueCreatedDate, issueUpdatedDate, isDeleted, issuePhoto], "RETURNING id");
 
-    console.log("Issue inserted successfully");
+
+    console.log("Issue inserted successfully",issueId.lastID);
+
+    await  dataBase.run("Insert into IssueComment(issueLogId, issueComment, issueUserId, issueCreatedDate, issueUpdatedDate, isDeleted) values (?, ?, ?, ?, ?, ?)",
+        [issueId.lastID, "Issue created", userId, issueCreatedDate, issueUpdatedDate, isDeleted]);
+}
+async function getCommentsByIssueId(issue)
+{
+    console.log("Data for comments12 ", issue);
+    const results = await dataBase.all("Select  issueComment from IssueComment where issueLogId = ? and IssueComment.isDeleted = 0", [issue])
+    return results;
+}
+async function addComment(comment)
+{
+    console.log("Data for comment ", comment);
+    const now = new Date();
+    let issueLogId = comment.issueId;
+    let issueComment = comment.commentContent;
+    let issueUserId = comment.userId;
+    let issueCreatedDate = now.toISOString();
+    let issueUpdatedDate  = now.toISOString();
+    let isDeleted = 0;
+
+    await dataBase.run("Insert into IssueComment(issueLogId, issueComment, issueUserId, issueCreatedDate, issueUpdatedDate, isDeleted) values (?, ?, ?, ?, ?, ?)",
+        [issueLogId, issueComment, issueUserId, issueCreatedDate, issueUpdatedDate, isDeleted]);
+
+    console.log("Comment added successfully");
 }
 async function checkEmailForRegister(register)
 {
@@ -128,4 +155,4 @@ async function checkEmailForRegister(register)
     return results
 }
 
-module.exports = {dataBaseConnection,changeStatus,updateIssue, getLogin,checkEmailForRegister,registerTheUser,insertIssue,getAllIssues,getIssueById,deleteIssue,loginUserDetails}
+module.exports = {dataBaseConnection,changeStatus,addComment,updateIssue,getCommentsByIssueId, getLogin,checkEmailForRegister,registerTheUser,insertIssue,getAllIssues,getIssueById,deleteIssue,loginUserDetails}
