@@ -11,6 +11,25 @@ click on add issue and fill the form and on home page table you will see the dat
 click on the id link to delete the entry and will be back on the homepage will all the result
 
 
-to run you can npm install and then node initdb.ja
+to run you can npm install and then node initdb.js
 
 and once done ...run node app.ctrl.js
+
+
+Based on the feedback, I will focus on upgrading my project. For resubmission purposes, I solely or heavily focused on the feedback I got and worked 100% on feedback to make my project up to the make.
+
+1) Added horizontal scaling in my table as per your note. Also, included media queries where possible to improve responsiveness.
+
+2) Now, as per the feedback, you would be able to edit the issue. Rule:- citizens have to add the photo in the edit as compulsory, otherwise, as per guidelines, the system will delete the image. Sorting is now implemented. As per user type, the tables will have that data sorted (admin will see all data, departments will see their own data, and citizens will see their own)
+
+
+
+:- please use this account domain for functionality:-&nbsp; 1) admin -: @admin.ca 2) roads -: @roads.com 3) waste -: @waste.com 4) water - @water.com 5) electricity -: @electricity.com&nbsp; 6) parking - @parking.com
+
+I have tested it and it was working as expected.
+
+For edit/view/delete, the user needs to click the ID in&nbsp;the table. Edit, delete, and add are only available to citizens.
+
+Status can also be changed, too, by the admin/dept user.
+
+The feedback has been implemented along with other features.(Please refer to commits for more details)
